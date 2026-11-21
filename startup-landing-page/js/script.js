@@ -1,207 +1,582 @@
 
-// DARK MODE
-const darkButton = document.getElementById("dark-mode");
+document.addEventListener("DOMContentLoaded", () => {
 
-darkButton.addEventListener("click", () => {
-    document.body.classList.toggle("dark");
+    // DARK MODE
 
-    const dark = document.body.classList.contains("dark");
+    const darkModeButton = document.getElementById("dark-mode");
 
-    darkButton.textContent = dark ? "☀️" : "🌙";
+    if (darkModeButton) {
 
-    localStorage.setItem("forma-theme", dark ? "dark" : "light");
+        const savedTheme = localStorage.getItem("forma-theme");
+
+        if (savedTheme === "dark") {
+            document.body.classList.add("dark-mode");
+        }
+
+        function updateThemeButton() {
+            const isDark = document.body.classList.contains("dark-mode");
+
+            darkModeButton.textContent = isDark ? "☀️" : "🌙";
+        }
+
+        updateThemeButton();
+
+        darkModeButton.addEventListener("click", () => {
+
+            document.body.classList.toggle("dark-mode");
+
+            const theme = document.body.classList.contains("dark-mode")
+                ? "dark"
+                : "light";
+
+            localStorage.setItem("forma-theme", theme);
+
+            updateThemeButton();
+
+        });
+    }
+
 });
 
-if (localStorage.getItem("forma-theme") === "dark") {
-    document.body.classList.add("dark");
-    darkButton.textContent = "☀️";
-}
 
+document.addEventListener("DOMContentLoaded", () => {
 
-// TASK MANAGER
-const taskInput = document.getElementById("task-input");
-const taskList = document.getElementById("task-list");
+    // WEEKLY PLANNER
 
-let tasks = JSON.parse(localStorage.getItem("forma-tasks") || "[]");
+    const taskInput = document.getElementById("task-input");
+    const addTask = document.getElementById("add-task");
+    const taskList = document.getElementById("task-list");
 
-function renderTasks() {
-    taskList.innerHTML = "";
+    let selectedDay = "monday";
 
-    tasks.forEach((task, index) => {
-        const li = document.createElement("li");
+    const savedTasks = JSON.parse(
+        localStorage.getItem("forma-tasks") || "{}"
+    );
 
-        const label = document.createElement("label");
-        const checkbox = document.createElement("input");
+    function saveTasks() {
+        localStorage.setItem(
+            "forma-tasks",
+            JSON.stringify(savedTasks)
+        );
+    }
 
-        checkbox.type = "checkbox";
-        checkbox.checked = task.completed;
+    function renderTasks() {
 
-        checkbox.addEventListener("change", () => {
-            tasks[index].completed = checkbox.checked;
-            saveTasks();
+        taskList.innerHTML = "";
+
+        const tasks = savedTasks[selectedDay] || [];
+
+        tasks.forEach((task, index) => {
+
+            const li = document.createElement("li");
+
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.checked = task.completed;
+
+            const text = document.createElement("span");
+            text.textContent = task.text;
+
+            if (task.completed) {
+                text.style.textDecoration = "line-through";
+            }
+
+            checkbox.addEventListener("change", () => {
+                task.completed = checkbox.checked;
+                saveTasks();
+                renderTasks();
+            });
+
+            const deleteButton = document.createElement("button");
+            deleteButton.textContent = "×";
+            deleteButton.type = "button";
+
+            deleteButton.addEventListener("click", () => {
+                savedTasks[selectedDay].splice(index, 1);
+                saveTasks();
+                renderTasks();
+            });
+
+            li.append(checkbox, text, deleteButton);
+            taskList.appendChild(li);
+
+        });
+    }
+
+    addTask.addEventListener("click", () => {
+
+        const value = taskInput.value.trim();
+
+        if (!value) {
+            alert("Please enter a task!");
+            return;
+        }
+
+        if (!savedTasks[selectedDay]) {
+            savedTasks[selectedDay] = [];
+        }
+
+        savedTasks[selectedDay].push({
+            text: value,
+            completed: false
         });
 
-        const span = document.createElement("span");
-        span.textContent = task.text;
+        saveTasks();
+        renderTasks();
 
-        if (task.completed) span.style.textDecoration = "line-through";
+        taskInput.value = "";
 
-        const remove = document.createElement("button");
-        remove.textContent = "×";
-        remove.type = "button";
+    });
 
-        remove.addEventListener("click", () => {
-            tasks.splice(index, 1);
-            saveTasks();
+    taskInput.addEventListener("keydown", event => {
+        if (event.key === "Enter") {
+            addTask.click();
+        }
+    });
+
+    // WEEKDAY SELECTION
+
+    document.querySelectorAll(".week-days .day").forEach(day => {
+
+        day.addEventListener("click", () => {
+
+            selectedDay = day.getAttribute("href").substring(1);
+
+            document.querySelectorAll(".day-content").forEach(content => {
+                content.style.display =
+                    content.id === selectedDay ? "block" : "none";
+            });
+
+            document.querySelectorAll(".week-days .day").forEach(link => {
+                link.classList.toggle("active", link === day);
+            });
+
+            renderTasks();
+
         });
 
-        label.append(checkbox, span);
-        li.append(label, remove);
-        taskList.appendChild(li);
+    });
+
+    document.querySelectorAll(".day-content").forEach(content => {
+        content.style.display =
+            content.id === "monday" ? "block" : "none";
+    });
+
+    renderTasks();
+
+});
+
+
+    // POMODORO TIMER
+
+    const timer = document.getElementById("timer");
+    const start = document.getElementById("start-timer");
+    const pause = document.getElementById("pause-timer");
+    const reset = document.getElementById("reset-timer");
+    const status = document.getElementById("timer-status");
+
+    let seconds = 25 * 60;
+    let interval = null;
+
+    function updateTimer() {
+        let minutes = Math.floor(seconds / 60);
+        let remainingSeconds = seconds % 60;
+
+        timer.textContent =
+            String(minutes).padStart(2, "0") + ":" +
+            String(remainingSeconds).padStart(2, "0");
+    }
+
+    start.addEventListener("click", () => {
+
+        if (interval !== null) return;
+
+        if (seconds === 0) seconds = 25 * 60;
+
+        status.textContent = "Stay focused! ✨";
+
+        interval = setInterval(() => {
+
+            seconds--;
+            updateTimer();
+
+            if (seconds <= 0) {
+
+                clearInterval(interval);
+                interval = null;
+
+                status.textContent = "Session completed! 🎉";
+
+                alert("Your focus session is complete!");
+
+            }
+
+        }, 1000);
+
+    });
+
+    pause.addEventListener("click", () => {
+
+        clearInterval(interval);
+        interval = null;
+
+        status.textContent = "Timer paused.";
+
+    });
+
+    reset.addEventListener("click", () => {
+
+        clearInterval(interval);
+        interval = null;
+
+        seconds = 25 * 60;
+
+        updateTimer();
+
+        status.textContent = "Ready for a productive session?";
+
+    });
+
+    updateTimer();
+
+    
+    // HABIT TRACKER
+
+    const habits = document.querySelectorAll(
+        ".habits-card input[type='checkbox']"
+    );
+
+    const today = new Date().toLocaleDateString("en-CA");
+
+    habits.forEach((habit, index) => {
+
+        const key = `forma-habit-${today}-${index}`;
+
+        habit.checked = localStorage.getItem(key) === "true";
+
+        habit.addEventListener("change", () => {
+
+            localStorage.setItem(key, habit.checked);
+
+        });
+
+    });
+
+    // =====================================
+// MEMORY CHALLENGE
+// =====================================
+
+const memoryButton = document.getElementById("memory-game");
+const memoryResult = document.getElementById("memory-result");
+
+if (memoryButton && memoryResult) {
+
+    memoryButton.addEventListener("click", () => {
+
+        const symbols = ["🌸", "⭐", "💜", "🌙", "🌸", "⭐", "💜", "🌙"];
+
+        // Shuffle symbols
+        symbols.sort(() => Math.random() - 0.5);
+
+        memoryResult.innerHTML = "";
+
+        let firstCard = null;
+        let locked = false;
+        let matches = 0;
+        let moves = 0;
+
+        const gameGrid = document.createElement("div");
+
+        gameGrid.style.display = "grid";
+        gameGrid.style.gridTemplateColumns = "repeat(4, 1fr)";
+        gameGrid.style.gap = "10px";
+        gameGrid.style.marginTop = "20px";
+
+        const movesText = document.createElement("p");
+        movesText.textContent = "Moves: 0";
+
+        const resultText = document.createElement("p");
+
+        symbols.forEach(symbol => {
+
+            const card = document.createElement("button");
+
+            card.type = "button";
+            card.textContent = "?";
+            card.style.fontSize = "25px";
+            card.style.padding = "20px 5px";
+            card.style.borderRadius = "12px";
+            card.style.border = "1px solid #ddd";
+            card.style.background = "#eee8ff";
+            card.style.cursor = "pointer";
+
+            card.addEventListener("click", () => {
+
+                if (
+                    locked ||
+                    card.dataset.matched === "true" ||
+                    card === firstCard
+                ) return;
+
+                card.textContent = symbol;
+
+                if (!firstCard) {
+                    firstCard = card;
+                    return;
+                }
+
+                moves++;
+                movesText.textContent = `Moves: ${moves}`;
+
+                if (firstCard.textContent === card.textContent) {
+
+                    firstCard.dataset.matched = "true";
+                    card.dataset.matched = "true";
+
+                    firstCard.style.background = "#c9f7d5";
+                    card.style.background = "#c9f7d5";
+
+                    matches++;
+                    firstCard = null;
+
+                    if (matches === 4) {
+                        resultText.textContent =
+                            `🎉 You won in ${moves} moves! Amazing work!`;
+                    }
+
+                } else {
+
+                    locked = true;
+
+                    const previousCard = firstCard;
+                    firstCard = null;
+
+                    setTimeout(() => {
+
+                        previousCard.textContent = "?";
+                        card.textContent = "?";
+
+                        locked = false;
+
+                    }, 800);
+
+                }
+
+            });
+
+            gameGrid.appendChild(card);
+
+        });
+
+        memoryResult.appendChild(movesText);
+        memoryResult.appendChild(gameGrid);
+        memoryResult.appendChild(resultText);
+
     });
 }
 
-function saveTasks() {
-    localStorage.setItem("forma-tasks", JSON.stringify(tasks));
-    renderTasks();
-}
+// =====================================
+// QUICK MATHS GAME
+// =====================================
 
-document.getElementById("add-task").addEventListener("click", () => {
-    const value = taskInput.value.trim();
+const mathButton = document.getElementById("math-game");
+const mathQuestion = document.getElementById("math-question");
+const mathAnswer = document.getElementById("math-answer");
+const mathResult = document.getElementById("math-result");
 
-    if (!value) return;
+let correctAnswer = null;
+let mathScore = 0;
+let mathRound = 0;
 
-    tasks.push({ text: value, completed: false });
-    taskInput.value = "";
-    saveTasks();
-});
+if (mathButton) {
 
-taskInput.addEventListener("keydown", event => {
-    if (event.key === "Enter") {
-        document.getElementById("add-task").click();
-    }
-});
+    function generateQuestion() {
 
-renderTasks();
+        const num1 = Math.floor(Math.random() * 20) + 1;
+        const num2 = Math.floor(Math.random() * 20) + 1;
 
+        const operations = ["+", "-", "×"];
 
-// POMODORO TIMER
-let remaining = 25 * 60;
-let timerInterval = null;
+        const operation =
+            operations[Math.floor(Math.random() * operations.length)];
 
-const timerDisplay = document.getElementById("timer");
-const timerStatus = document.getElementById("timer-status");
-
-function updateTimer() {
-    const minutes = Math.floor(remaining / 60);
-    const seconds = remaining % 60;
-
-    timerDisplay.textContent =
-        String(minutes).padStart(2, "0") + ":" +
-        String(seconds).padStart(2, "0");
-}
-
-document.getElementById("start-timer").addEventListener("click", () => {
-    if (timerInterval) return;
-
-    timerStatus.textContent = "Focus session in progress!";
-
-    timerInterval = setInterval(() => {
-        if (remaining > 0) {
-            remaining--;
-            updateTimer();
-        } else {
-            clearInterval(timerInterval);
-            timerInterval = null;
-            timerStatus.textContent = "Session complete! Take a break.";
-            alert("Great job! Your focus session is complete.");
+        if (operation === "+") {
+            correctAnswer = num1 + num2;
         }
-    }, 1000);
-});
 
-document.getElementById("pause-timer").addEventListener("click", () => {
-    clearInterval(timerInterval);
-    timerInterval = null;
-    timerStatus.textContent = "Timer paused.";
-});
+        else if (operation === "-") {
+            correctAnswer = num1 - num2;
+        }
 
-document.getElementById("reset-timer").addEventListener("click", () => {
-    clearInterval(timerInterval);
-    timerInterval = null;
-    remaining = 25 * 60;
-    updateTimer();
-    timerStatus.textContent = "Ready for another session?";
-});
+        else {
+            correctAnswer = num1 * num2;
+        }
 
-updateTimer();
+        mathQuestion.textContent =
+            `${num1} ${operation} ${num2} = ?`;
 
+        mathAnswer.value = "";
+        mathAnswer.focus();
 
-// MATH GAME
-document.getElementById("math-game").addEventListener("click", () => {
-    const a = Math.floor(Math.random() * 20) + 1;
-    const b = Math.floor(Math.random() * 20) + 1;
+        mathResult.textContent = `Score: ${mathScore}`;
 
-    const question = document.getElementById("math-question");
-    const result = document.getElementById("math-result");
-    const answer = document.getElementById("math-answer");
+        mathButton.textContent = "Check answer";
 
-    if (question.dataset.answer) {
-        result.textContent =
-            Number(answer.value) === Number(question.dataset.answer)
-            ? "Correct! Well done."
-            : "Not quite! Try another question.";
-
-        question.dataset.answer = "";
-        answer.value = "";
-        return;
     }
 
-    question.textContent = `${a} + ${b} = ?`;
-    question.dataset.answer = a + b;
-    result.textContent = "";
-    answer.focus();
-});
+    mathButton.addEventListener("click", () => {
 
+        // Start a new game
+        if (correctAnswer === null) {
 
-// TYPING GAME
-document.getElementById("typing-game").addEventListener("click", () => {
-    const sentence = document.getElementById("typing-sentence").textContent;
-    const input = document.getElementById("typing-input").value;
-    const result = document.getElementById("typing-result");
+            mathScore = 0;
+            mathRound = 0;
 
-    if (input === sentence) {
-        result.textContent = "Perfect! Excellent accuracy.";
-    } else {
-        result.textContent = "Not quite. Check your spelling and try again.";
-    }
-});
+            generateQuestion();
+            return;
 
+        }
 
-// SIGNUP DEMO
-document.getElementById("signup-form").addEventListener("submit", event => {
-    event.preventDefault();
+        if (mathAnswer.value.trim() === "") {
+            mathResult.textContent = "Please enter your answer!";
+            return;
+        }
 
-    const password = document.getElementById("password").value;
-    const confirm = document.getElementById("confirm-password").value;
+        const userAnswer = Number(mathAnswer.value);
 
-    if (password !== confirm) {
-        alert("Your passwords do not match.");
-        return;
-    }
+        if (userAnswer === correctAnswer) {
 
-    alert("Signup interface working! A real account requires a backend.");
-});
+            mathScore++;
+            mathResult.textContent = "Correct! 🎉";
 
+        }
 
-// LOGIN DEMO
-document.getElementById("login-form").addEventListener("submit", event => {
-    event.preventDefault();
-    alert("Login interface working! Connect a backend for real authentication.");
-});
+        else {
 
+            mathResult.textContent =
+                `Incorrect! The correct answer was ${correctAnswer}.`;
 
-// FORGOT PASSWORD DEMO
-document.getElementById("forgot-form").addEventListener("submit", event => {
-    event.preventDefault();
-    alert("Password recovery requires a connected email service.");
-});
+        }
+
+        mathRound++;
+        correctAnswer = null;
+
+        if (mathRound >= 10) {
+
+            mathQuestion.textContent = "Game completed!";
+
+            mathResult.textContent =
+                `🏆 Final score: ${mathScore}/10`;
+
+            mathButton.textContent = "Play again";
+
+        }
+
+        else {
+
+            mathButton.textContent = "Next question";
+
+        }
+
+    });
+
+}
+
+// =====================================
+// TYPING SPEED GAME
+// =====================================
+
+const typingButton = document.getElementById("typing-game");
+const typingInput = document.getElementById("typing-input");
+const typingSentence = document.getElementById("typing-sentence");
+const typingResult = document.getElementById("typing-result");
+
+let typingStartTime = null;
+let typingStarted = false;
+
+if (typingButton && typingInput) {
+
+    // Start timer when user begins typing
+    typingInput.addEventListener("input", () => {
+
+        if (!typingStarted && typingInput.value.length > 0) {
+
+            typingStartTime = Date.now();
+            typingStarted = true;
+
+        }
+
+    });
+
+    typingButton.addEventListener("click", () => {
+
+        const originalText = typingSentence.textContent.trim();
+        const userText = typingInput.value.trim();
+
+        if (!userText) {
+
+            typingResult.textContent = "Start typing first! ⌨️";
+            return;
+
+        }
+
+        if (userText !== originalText) {
+
+            typingResult.textContent =
+                "Keep going! Your text doesn't match yet.";
+
+            return;
+
+        }
+
+        const endTime = Date.now();
+
+        const timeInMinutes =
+            (endTime - typingStartTime) / 60000;
+
+        const words = originalText.split(/\s+/).length;
+
+        const wpm = Math.round(words / timeInMinutes);
+
+        // Calculate accuracy
+        let correctCharacters = 0;
+
+        const typedText = typingInput.value;
+
+        for (let i = 0; i < originalText.length; i++) {
+
+            if (typedText[i] === originalText[i]) {
+                correctCharacters++;
+            }
+
+        }
+
+        const accuracy = Math.round(
+            (correctCharacters / originalText.length) * 100
+        );
+
+        typingResult.innerHTML = `
+            🎉 Test completed!<br>
+            ⚡ Speed: ${wpm} WPM<br>
+            🎯 Accuracy: ${accuracy}%
+        `;
+
+        typingButton.textContent = "Try again";
+
+        typingButton.onclick = () => {
+
+            typingInput.value = "";
+            typingResult.textContent = "";
+
+            typingStarted = false;
+            typingStartTime = null;
+
+            typingButton.textContent = "Check speed";
+
+            typingInput.focus();
+
+        };
+
+    });
+
+}

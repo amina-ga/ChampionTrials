@@ -2758,3 +2758,339 @@ body.dark-theme #forma-chat-input {
     }
 }
 
+/* =====================================
+   FORMA DARK MODE
+===================================== */
+
+body,
+.navbar,
+.feature-card,
+.price-card,
+.tool-card,
+.dashboard,
+.progress-card,
+.modal-content,
+.footer {
+    transition: background-color 0.3s ease,
+                color 0.3s ease,
+                border-color 0.3s ease;
+}
+
+body.dark-mode {
+    background: #12121a;
+    color: #f5f3fa;
+}
+
+.dark-mode .navbar,
+.dark-mode .footer {
+    background: #181824;
+    color: #ffffff;
+}
+
+.dark-mode .feature-card,
+.dark-mode .price-card,
+.dark-mode .tool-card,
+.dark-mode .dashboard,
+.dark-mode .progress-card {
+    background: #20202e;
+    color: #f5f3fa;
+    border-color: #343448;
+}
+
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode h3,
+.dark-mode h4,
+.dark-mode p,
+.dark-mode small,
+.dark-mode label {
+    color: inherit;
+}
+
+.dark-mode input,
+.dark-mode textarea {
+    background: #292939;
+    color: white;
+    border-color: #44445a;
+}
+
+.dark-mode input::placeholder {
+    color: #aaa7bb;
+}
+
+.dark-mode a {
+    color: #c4a5ff;
+}
+
+.dark-mode .modal-content {
+    background: #20202e;
+    color: white;
+}
+
+.dark-mode .day-content {
+    background: #20202e;
+    color: white;
+}
+
+.dark-mode .week-days .day.active {
+    background: #7655b9;
+    color: white;
+}
+
+.dark-mode details {
+    background: #20202e;
+    color: white;
+    border-color: #343448;
+}
+
+.dark-mode button {
+    color: white;
+}
+
+.dark-mode .task {
+    background: #292939;
+    color: white;
+}
+
+.dark-mode .tag {
+    color: #c4a5ff;
+}
+
+/* =====================================
+   TASK LIST
+===================================== */
+
+#task-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 15px;
+}
+
+#task-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    margin-bottom: 8px;
+    background: rgba(130, 100, 200, 0.08);
+    border-radius: 10px;
+}
+
+#task-list li span {
+    flex: 1;
+}
+
+#task-list li button {
+    border: none;
+    background: transparent;
+    color: #e46b79;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* =====================================
+   ACTIVE WEEKDAY
+===================================== */
+
+.week-days .day.active {
+    background: #7655b9;
+    color: white;
+    border-radius: 8px;
+}
+
+/* =====================================
+   BUTTON INTERACTIONS
+===================================== */
+
+button {
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+}
+
+
+/* =====================================
+   FORMA FAQ SECTION
+===================================== */
+
+.faq {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 100px 25px;
+}
+
+/* FAQ Heading */
+
+.faq .section-heading {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.faq .section-heading .tag {
+    color: #9670d5;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.faq .section-heading h2 {
+    font-size: clamp(30px, 5vw, 44px);
+    font-weight: 700;
+    margin-top: 15px;
+    color: #24212d;
+}
+
+.faq .section-heading h2 span {
+    color: #9670d5;
+}
+
+.faq .section-heading p {
+    color: #777;
+    margin-top: 12px;
+}
+
+/* FAQ Items */
+
+.faq details {
+    background: #ffffff;
+    border: 1px solid #eeeaf5;
+    border-radius: 14px;
+    margin-bottom: 15px;
+    padding: 0;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+/* Hover Effect */
+
+.faq details:hover {
+    border-color: #c8b2ed;
+    box-shadow: 0 5px 20px rgba(120, 85, 180, 0.08);
+    transform: translateY(-2px);
+}
+
+/* Question */
+
+.faq summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 22px 25px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #302b3b;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+/* Remove Default Arrow */
+
+.faq summary::-webkit-details-marker {
+    display: none;
+}
+
+/* Custom Plus Icon */
+
+.faq summary::after {
+    content: "+";
+    font-size: 25px;
+    font-weight: 400;
+    color: #9670d5;
+    transition: transform 0.3s ease;
+}
+
+/* Change Plus to Minus */
+
+.faq details[open] summary::after {
+    content: "−";
+    transform: rotate(180deg);
+}
+
+/* Open Question */
+
+.faq details[open] {
+    border-color: #c8b2ed;
+    background: #fcfaff;
+}
+
+/* Answer */
+
+.faq details p {
+    color: #77717f;
+    font-size: 14px;
+    line-height: 1.8;
+    padding: 0 25px 22px;
+    margin: 0;
+    animation: faqFade 0.3s ease;
+}
+
+/* Animation */
+
+@keyframes faqFade {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =====================================
+   DARK MODE FAQ
+===================================== */
+
+.dark-mode .faq .section-heading h2 {
+    color: #ffffff;
+}
+
+.dark-mode .faq details {
+    background: #20202e;
+    border-color: #343448;
+}
+
+.dark-mode .faq summary {
+    color: #ffffff;
+}
+
+.dark-mode .faq details p {
+    color: #b8b4c5;
+}
+
+.dark-mode .faq details[open] {
+    background: #272337;
+    border-color: #9670d5;
+}
+
+/* =====================================
+   MOBILE RESPONSIVENESS
+===================================== */
+
+@media (max-width: 600px) {
+
+    .faq {
+        padding: 70px 18px;
+    }
+
+    .faq .section-heading {
+        margin-bottom: 35px;
+    }
+
+    .faq summary {
+        padding: 18px;
+        font-size: 14px;
+    }
+
+    .faq details p {
+        padding: 0 18px 18px;
+        font-size: 13px;
+    }
+
+}
+
