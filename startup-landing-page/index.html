@@ -10,14 +10,16 @@
 <body>
 
     <!-- NAVIGATION -->
-    <header class="navbar">
+    <header class="navbar"><button id="dark-mode">🌙</button>
         <a href="#" class="logo">forma<span>.</span></a>
 
-        <nav>
-            <a href="features.html">Features</a>
-            <a href="about.html">About</a>
-            <a href="pricing.html">Pricing</a>
-        </nav>
+    <nav>
+        <a href="#features">Features</a>
+        <a href="#about">About</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#productivity">My Space</a>
+        <a href="#games">Mini Games ✦</a>
+    </nav>
 
         <a href="#signup" class="nav-button">Get Started ↗</a>
     </header>
@@ -217,9 +219,642 @@
                         <li>✓ Goal tracking</li>
                     </ul>
 
-                    <a href="#signup" class="price-button"></a>
+                    <a href="#signup" class="price-button">Subscription</a>
                 </article>
             </div> 
         </section>
-    </main>           
-</body>    
+    </main>   
+    
+    <!-- SIGN UP MODAL -->
+
+<div class="modal" id="signup">
+
+    <div class="modal-content">
+
+        <a href="#" class="close-modal">×</a>
+
+        <span class="tag">WELCOME TO FORMA</span>
+
+        <h2>Create your account.</h2>
+
+        <p>Start organizing your goals and building your future.</p>
+
+        <form action="#" method="get">
+
+            <label for="fullname">Full name</label>
+            <input
+                type="text"
+                id="fullname"
+                name="fullname"
+                placeholder="Enter your full name"
+                required
+            >
+
+            <label for="email">Email address</label>
+            <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter your email address"
+                required
+            >
+
+            <label for="password">Password</label>
+            <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Create a password"
+                minlength="8"
+                required
+            >
+
+            <label for="confirm-password">Confirm password</label>
+            <input
+                type="password"
+                id="confirm-password"
+                placeholder="Confirm your password"
+                required
+            >
+
+            <button type="submit">Create account →</button>
+
+        </form>
+
+        <div class="signup-footer">
+            By creating an account, you agree to our
+            <a href="#">Terms & Conditions</a>.
+        </div>
+
+        <p class="login-text">
+            Already have an account?
+            <a href="#login">Log in</a>
+        </p>
+
+    </div>
+
+</div>
+
+<!-- LOG IN MODAL -->
+
+<div class="modal" id="login">
+
+    <div class="modal-content">
+
+        <a href="#" class="close-modal">x</a>
+
+        <span class="tag">WELCOME BACK</span>
+
+        <h2>Good to see you again.</h2>
+
+        <p>Log in to continue your journey with Forma.</p>
+
+        <form action="#" method="get">
+
+            <label for="login-email">Email address</label>
+            <input
+                type="email"
+                id="login-email"
+                placeholder="Enter your email"
+                required
+            >
+
+            <label for="login-password">Password</label>
+            <input
+                type="password"
+                id="login-password"
+                placeholder="Enter your password"
+                required
+            >
+
+            <a href="#forgot" class="forgot-password">
+                Forgot password?
+            </a>
+
+            <button type="submit">Log in →</button>
+
+        </form>
+
+        <p class="login-text">
+            Don't have an account?
+            <a href="#signup">Sign up</a>
+        </p>
+
+    </div>
+
+</div>
+
+<!-- INTERACTIVE PRODUCTIVITY DASHBOARD -->
+
+<section class="section productivity" id="productivity">
+
+    <div class="section-heading">
+        <span class="tag">YOUR PERSONAL SPACE</span>
+        <h2>Your productivity, <span>your way.</span></h2>
+        <p>Plan your days and create better habits.</p>
+    </div>
+
+    <div class="productivity-grid">
+
+        <!-- WEEKLY PLANNER -->
+
+        <div class="tool-card planner-card">
+
+            <span class="tool-icon">▤</span>
+
+            <h3>Weekly planner</h3>
+            <p>Choose a day and organize your week.</p>
+            <div class="planner-input">
+            <input type="text" id="task-input" placeholder="Add a new task...">
+            <button id="add-task">+</button>
+        </div>
+    </div>
+
+<ul id="task-list"></ul>
+
+            <div class="week-days">
+                <a href="#monday" class="day">MON</a>
+                <a href="#tuesday" class="day">TUE</a>
+                <a href="#wednesday" class="day">WED</a>
+                <a href="#thursday" class="day">THU</a>
+                <a href="#friday" class="day">FRI</a>
+                <a href="#saturday" class="day">SAT</a>
+                <a href="#sunday" class="day">SUN</a>
+            </div>
+
+            <div class="day-content" id="monday">
+                <h4>Monday's focus</h4>
+                <label><input type="checkbox"> Study mathematics</label>
+                <label><input type="checkbox"> Read 2 chapters</label>
+                <label><input type="checkbox"> Plan the week</label>
+            </div>
+
+            <div class="day-content" id="tuesday">
+                <h4>Tuesday's focus</h4>
+                <label><input type="checkbox"> Complete assignments</label>
+                <label><input type="checkbox"> Exercise</label>
+                <label><input type="checkbox"> Read for 20 minutes</label>
+            </div>
+
+            <div class="day-content" id="wednesday">
+                <h4>Wednesday's focus</h4>
+                <label><input type="checkbox"> Review notes</label>
+                <label><input type="checkbox"> Study for an exam</label>
+                <label><input type="checkbox"> Organize workspace</label>
+            </div>
+
+            <div class="day-content" id="thursday">
+                <h4>Thursday's focus</h4>
+                <label><input type="checkbox"> Finish assignments</label>
+                <label><input type="checkbox"> Practice exercises</label>
+                <label><input type="checkbox"> Take a break</label>
+            </div>
+
+            <div class="day-content" id="friday">
+                <h4>Friday's focus</h4>
+                <label><input type="checkbox"> Review the week</label>
+                <label><input type="checkbox"> Complete pending tasks</label>
+                <label><input type="checkbox"> Set new goals</label>
+            </div>
+
+            <div class="day-content" id="saturday">
+                <h4>Saturday's focus</h4>
+                <label><input type="checkbox"> Personal projects</label>
+                <label><input type="checkbox"> Exercise</label>
+                <label><input type="checkbox"> Relax and recharge</label>
+            </div>
+
+            <div class="day-content" id="sunday">
+                <h4>Sunday's focus</h4>
+                <label><input type="checkbox"> Prepare for Monday</label>
+                <label><input type="checkbox"> Organize your notes</label>
+                <label><input type="checkbox"> Plan your goals</label>
+            </div>
+
+        </div>
+
+
+        <!-- HABIT TRACKER -->
+
+        <div class="tool-card">
+
+            <span class="tool-icon">✧</span>
+
+            <h3>Daily habits</h3>
+            <p>Small habits create big changes.</p>
+
+            <div class="habit-list">
+
+                <label class="habit-item">
+                    <span>📖 Read for 20 minutes</span>
+                    <input type="checkbox">
+                </label>
+
+                <label class="habit-item">
+                    <span>💧 Drink enough water</span>
+                    <input type="checkbox">
+                </label>
+
+                <label class="habit-item">
+                    <span>🏃 Exercise</span>
+                    <input type="checkbox">
+                </label>
+
+                <label class="habit-item">
+                    <span>📚 Study for 30 minutes</span>
+                    <input type="checkbox">
+                </label>
+
+                <label class="habit-item">
+                    <span>🌙 Sleep on time</span>
+                    <input type="checkbox">
+                </label>
+
+            </div>
+            <p id="habit-progress">0 of 5 habits completed.</p>
+
+            <p class="habit-quote">"Consistency is more important than perfection."</p>
+
+        </div>
+
+
+        <!-- NOTES -->
+
+        <div class="tool-card notes-card">
+
+            <span class="tool-icon">✎</span>
+
+            <h3>My notes</h3>
+            <p>A little space for your thoughts and ideas.</p>
+
+            <textarea
+                placeholder="Write your thoughts here..."
+                rows="7"
+            ></textarea>
+
+            <span class="notes-hint">
+                Your personal space for inspiration ✨
+            </span>
+
+        </div>
+
+
+        <!-- PRODUCTIVITY TIPS -->
+
+        <div class="tool-card inspiration-card">
+
+            <span class="tool-icon">☀</span>
+
+            <h3>A little reminder</h3>
+
+            <p>
+                You don't have to have everything figured out.
+                Just focus on the next small step.
+            </p>
+
+            <div class="inspiration-bottom">
+                MAKE TODAY COUNT.
+                <span>✦</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- MINI GAMES ZONE -->
+
+<section class="section games" id="games">
+
+    <div class="section-heading">
+        <span class="tag">TAKE A LITTLE BREAK ✦</span>
+        <h2>Welcome to the <span>game zone.</span></h2>
+        <p>Choose your favorite game and have some fun!</p>
+    </div>
+
+    <!-- GAME MENU -->
+
+    <div class="game-menu">
+
+        <a href="#memory-game" class="game-choice">
+            <span class="game-emoji">🃏</span>
+            <h3>Memory Match</h3>
+            <p>Find the matching pairs and test your memory.</p>
+            <span class="play-link">Play game →</span>
+        </a>
+
+        <a href="#snake-game" class="game-choice">
+            <span class="game-emoji">🐍</span>
+            <h3>Snake Game</h3>
+            <p>Guide the snake and collect the apples!</p>
+            <span class="play-link">Play game →</span>
+        </a>
+
+        <a href="#obby-game" class="game-choice">
+            <span class="game-emoji">🏃</span>
+            <h3>Mini Obby</h3>
+            <p>Jump across platforms and avoid obstacles.</p>
+            <span class="play-link">Play game →</span>
+        </a>
+
+        <a href="#lucky-game" class="game-choice">
+            <span class="game-emoji">⭐</span>
+            <h3>Lucky Star</h3>
+            <p>Pick a star and discover your surprise.</p>
+            <span class="play-link">Play game →</span>
+        </a>
+
+    </div>
+
+
+    <!-- MEMORY GAME -->
+
+    <div class="game-area" id="memory-game">
+
+        <a href="#games" class="back-games">← Back to games</a>
+
+        <span class="tag">GAME 01</span>
+        <h3>Memory Match 🃏</h3>
+        <p>Can you find all the matching pairs?</p>
+
+        <div class="memory-board">
+
+            <input type="radio" name="memory1" id="m1">
+            <label for="m1">🌸</label>
+
+            <input type="radio" name="memory1" id="m2">
+            <label for="m2">⭐</label>
+
+            <input type="radio" name="memory1" id="m3">
+            <label for="m3">🌙</label>
+
+            <input type="radio" name="memory1" id="m4">
+            <label for="m4">🦋</label>
+
+            <input type="radio" name="memory1" id="m5">
+            <label for="m5">💜</label>
+
+            <input type="radio" name="memory1" id="m6">
+            <label for="m6">🍓</label>
+
+        </div>
+
+        <p class="game-note">
+            This is a visual memory-card demo. A fully playable matching game requires JavaScript.
+        </p>
+
+    </div>
+
+
+    <!-- SNAKE GAME -->
+
+    <div class="game-area" id="snake-game">
+
+        <a href="#games" class="back-games">← Back to games</a>
+
+        <span class="tag">GAME 02</span>
+        <h3>Snake Game 🐍</h3>
+        <p>Collect the apples and grow your snake!</p>
+
+        <div class="snake-board">
+
+            <div class="snake-food">🍎</div>
+
+            <div class="snake-body">
+                <span>🟩</span>
+                <span>🟩</span>
+                <span>🟩</span>
+                <span>🟩</span>
+            </div>
+
+        </div>
+
+        <div class="snake-controls">
+            <span>↑</span>
+            <div>
+                <span>←</span>
+                <span>↓</span>
+                <span>→</span>
+            </div>
+        </div>
+
+        <p class="game-note">
+            Snake is a visual CSS demonstration. Moving snake controls require JavaScript.
+        </p>
+
+    </div>
+
+
+    <!-- OBBY GAME -->
+
+    <div class="game-area" id="obby-game">
+
+        <a href="#games" class="back-games">← Back to games</a>
+
+        <span class="tag">GAME 03</span>
+        <h3>Mini Obby 🏃</h3>
+        <p>Imagine jumping across these colorful platforms!</p>
+
+        <div class="obby-board">
+
+            <div class="obby-cloud">☁️</div>
+
+            <div class="obby-player">🏃</div>
+
+            <div class="obby-platform platform-one"></div>
+            <div class="obby-platform platform-two"></div>
+            <div class="obby-platform platform-three"></div>
+            <div class="obby-platform platform-four"></div>
+
+            <div class="obby-finish">🏁</div>
+
+        </div>
+
+        <p class="game-note">
+            This is a visual obstacle-course preview. Keyboard movement and jumping require JavaScript.
+        </p>
+
+    </div>
+
+
+    <!-- LUCKY STAR GAME -->
+
+    <div class="game-area" id="lucky-game">
+
+        <a href="#games" class="back-games">← Back to games</a>
+
+        <span class="tag">GAME 04</span>
+        <h3>Pick Your Lucky Star ⭐</h3>
+        <p>Choose one star and discover your surprise!</p>
+
+        <div class="star-options">
+
+            <div class="star-option">
+                <input type="radio" name="lucky" id="lucky1">
+                <label for="lucky1">✦</label>
+                <div class="star-result">
+                    🌸 <strong>You're blooming!</strong>
+                    <p>Something beautiful is coming.</p>
+                </div>
+            </div>
+
+            <div class="star-option">
+                <input type="radio" name="lucky" id="lucky2">
+                <label for="lucky2">✧</label>
+                <div class="star-result">
+                    💜 <strong>You're amazing!</strong>
+                    <p>Believe in your abilities.</p>
+                </div>
+            </div>
+
+            <div class="star-option">
+                <input type="radio" name="lucky" id="lucky3">
+                <label for="lucky3">✦</label>
+                <div class="star-result">
+                    ⭐ <strong>Your future is bright!</strong>
+                    <p>Keep reaching for your dreams.</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- FAQ SECTION -->
+
+<section class="section faq-section" id="faq">
+
+    <div class="section-heading">
+        <span class="tag">NEED HELP?</span>
+        <h2>Frequently asked <span>questions.</span></h2>
+        <p>Everything you need to know about Forma.</p>
+    </div>
+
+    <div class="faq-container">
+
+        <details class="faq-item">
+            <summary>What is Forma?</summary>
+            <p>Forma is a productivity platform designed to help you organize tasks, manage time and build better habits.</p>
+        </details>
+
+        <details class="faq-item">
+            <summary>Is Forma free?</summary>
+            <p>Yes! The Basic version is free and includes essential productivity tools.</p>
+        </details>
+
+        <details class="faq-item">
+            <summary>Can I use Forma on my phone?</summary>
+            <p>Yes! Forma is designed to work on mobile phones, tablets and computers.</p>
+        </details>
+
+        <details class="faq-item">
+            <summary>Can I track my daily habits?</summary>
+            <p>Yes! You can use the habit tracker to check off your daily activities.</p>
+        </details>
+
+        <details class="faq-item">
+            <summary>Does Forma save my notes?</summary>
+            <p>This HTML and CSS demonstration does not automatically save notes. A future version with JavaScript or a backend could support this.</p>
+        </details>
+
+    </div>
+
+</section>
+
+
+<!-- MINI CHATBOT -->
+
+<div class="chatbot">
+
+    <input type="checkbox" id="chat-toggle">
+
+    <label for="chat-toggle" class="chat-button">
+        ✦
+        <span class="chat-notification"></span>
+    </label>
+
+    <div class="chat-window">
+
+        <div class="chat-header">
+
+            <div>
+                <strong>Forma Assistant ✨</strong>
+                <small>Here to help you stay organized</small>
+            </div>
+
+            <label for="chat-toggle" class="chat-close">×</label>
+
+        </div>
+
+        <div class="chat-body">
+
+            <div class="bot-message">
+                Hey there! 👋 Welcome to Forma.
+
+                I'm your little productivity assistant.
+                What can I help you with today?
+            </div>
+
+            <p class="chat-suggestion-title">
+                CHOOSE A QUESTION
+            </p>
+
+            <a href="#chat-planning" class="chat-question">
+                How can I plan my day?
+            </a>
+
+            <a href="#chat-focus" class="chat-question">
+                How can I stay focused?
+            </a>
+
+            <a href="#chat-habits" class="chat-question">
+                How do I build better habits?
+            </a>
+
+            <a href="#chat-motivation" class="chat-question">
+                I need some motivation!
+            </a>
+
+            <div class="bot-answer" id="chat-planning">
+                <strong>Let's plan your day! ✎</strong>
+                <p>Start by writing down your three most important tasks. Focus on completing them one at a time.</p>
+            </div>
+
+            <div class="bot-answer" id="chat-focus">
+                <strong>Time to focus! ◷</strong>
+                <p>Try studying for 25 minutes without distractions, followed by a 5-minute break.</p>
+            </div>
+
+            <div class="bot-answer" id="chat-habits">
+                <strong>Build small habits! ✧</strong>
+                <p>Start with one simple habit. Repeat it daily and gradually build your routine.</p>
+            </div>
+
+            <div class="bot-answer" id="chat-motivation">
+                <strong>You can do this! 💜</strong>
+                <p>Remember, progress doesn't have to be perfect. Every little step brings you closer to your goals.</p>
+            </div>
+
+        </div>
+
+        <div class="chat-footer">
+            <span>Made with care by Forma.</span>
+            <span>✦</span>
+        </div>
+
+    </div>
+
+</div>
+<script src="js/server.js"></script>
+
+
+
+</body>
+</html>    
