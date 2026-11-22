@@ -1,25 +1,475 @@
 
-document.addEventListener('DOMContentLoaded',()=>{
-// Memory match
-const start=document.querySelector('#memory-start'),board=document.querySelector('#memory-board'),mout=document.querySelector('#memory-output');
-if(start){start.onclick=()=>{board.innerHTML='';mout.textContent='Moves: 0';let vals=['🌸','⭐','💜','🌙','🍓','☁️','🌸','⭐','💜','🌙','🍓','☁️'].sort(()=>Math.random()-.5),first=null,lock=false,moves=0,found=0;
- vals.forEach(v=>{let b=document.createElement('button');b.className='memory-tile';b.textContent='?';b.onclick=()=>{if(lock||b.disabled||b===first)return;b.textContent=v;if(!first){first=b;return;}moves++;mout.textContent=`Moves: ${moves}`;if(first.textContent===v){first.disabled=b.disabled=true;first.classList.add('matched');b.classList.add('matched');first=null;found+=2;if(found===vals.length){mout.textContent=`You matched them all in ${moves} moves! 🎉`;window.FormaProfile?.recordGame('Memory Match',`${moves} moves`);}}else{lock=true;let old=first;first=null;setTimeout(()=>{old.textContent='?';b.textContent='?';lock=false;},650);}};board.appendChild(b);});};}
-// Maths
-let answer=null,round=0,score=0;const mq=document.querySelector('#math-q'),mi=document.querySelector('#math-input'),mb=document.querySelector('#math-check'),mo=document.querySelector('#math-out');
-function nextMath(){let a=1+Math.floor(Math.random()*15),b=1+Math.floor(Math.random()*15),op=['+','−','×'][Math.floor(Math.random()*3)];answer=op==='+'?a+b:op==='−'?a-b:a*b;mq.textContent=`${a} ${op} ${b} = ?`;mi.value='';mb.textContent='Check answer';}
-if(mb)mb.onclick=()=>{if(answer===null){round=score=0;nextMath();mo.textContent='Question 1 of 10';return;}if(mi.value===''){mo.textContent='Enter an answer first.';return;}if(Number(mi.value)===answer)score++;round++;answer=null;if(round===10){mq.textContent='Challenge complete!';mo.textContent=`Your score: ${score}/10 🏆`;mb.textContent='Play again';window.FormaProfile?.recordGame('Quick Maths',`${score}/10`);}else{mo.textContent=`Score: ${score} · Question ${round+1} of 10`;nextMath();}};
-// Typing
-let typingStarted=0;const ti=document.querySelector('#typing-text'),tp=document.querySelector('#typing-prompt'),tb=document.querySelector('#typing-check'),to=document.querySelector('#typing-out');
-if(ti)ti.oninput=()=>{if(!typingStarted&&ti.value)typingStarted=Date.now();};
-if(tb)tb.onclick=()=>{let target=tp.textContent;if(ti.value.trim()!==target){to.textContent='Not quite yet — match the sentence exactly.';return;}let mins=Math.max((Date.now()-typingStarted)/60000,.01),wpm=Math.round(target.split(/\s+/).length/mins);to.textContent=`${wpm} words per minute. Great work!`;window.FormaProfile?.recordGame('Typing Sprint',`${wpm} WPM`);typingStarted=0;ti.value='';};
-// Scramble
-const words=['PURPLE','FOCUS','PLANET','FLOWER','GARDEN','CREATE'];let word='';
-const sw=document.querySelector('#scramble-word'),si=document.querySelector('#scramble-input'),sb=document.querySelector('#scramble-check'),so=document.querySelector('#scramble-out');
-if(sb)sb.onclick=()=>{if(!word){word=words[Math.floor(Math.random()*words.length)];sw.textContent=word.split('').sort(()=>Math.random()-.5).join('');sb.textContent='Check word';so.textContent='';return;}if(si.value.trim().toUpperCase()===word){so.textContent='Correct! ✨';window.FormaProfile?.recordGame('Word Scramble','Solved');word='';sb.textContent='Next word';}else so.textContent='Try again!';};
-// Sequence
-const sq=document.querySelector('#sequence-q'),sqi=document.querySelector('#sequence-input'),sqb=document.querySelector('#sequence-check'),sqo=document.querySelector('#sequence-out');let seq=0;
-if(sqb)sqb.onclick=()=>{if(!seq){seq=1+Math.floor(Math.random()*8);let step=seq%2?3:5,start=seq%2?2:4;sq.dataset.answer=String(start+step*4);sq.textContent=`${start}, ${start+step}, ${start+2*step}, ${start+3*step}, ?`;sqo.textContent='';sqb.textContent='Check';return;}sqo.textContent=Number(sqi.value)===Number(sq.dataset.answer)?'You got it! 🎉':`Not quite — the answer was ${sq.dataset.answer}.`;if(Number(sqi.value)===Number(sq.dataset.answer))window.FormaProfile?.recordGame('Number Sequence','Correct');seq=0;sqb.textContent='Try another';sqi.value='';};
-// Reaction
-const rb=document.querySelector('#reaction-start'),pad=document.querySelector('#reaction-pad'),ro=document.querySelector('#reaction-out');let ready=false,goAt=0,timeout=null;
-if(rb){rb.onclick=()=>{clearTimeout(timeout);ready=false;pad.style.background='#f5e7df';pad.textContent='Wait for green…';ro.textContent='';timeout=setTimeout(()=>{ready=true;goAt=performance.now();pad.style.background='#dff3e4';pad.textContent='CLICK NOW!';},1200+Math.random()*3000);};pad.onclick=()=>{if(!ready){if(timeout){clearTimeout(timeout);timeout=null;ro.textContent='Too soon! Try again.';}return;}const ms=Math.round(performance.now()-goAt);ro.textContent=`Your reaction time: ${ms} ms ⚡`;window.FormaProfile?.recordGame('Reaction Test',`${ms} ms`);ready=false;pad.textContent='Nice reaction!';};}
+document.addEventListener("DOMContentLoaded", () => {
+
+    // =====================================
+    // 1. MEMORY MATCH
+    // =====================================
+
+    const start = document.querySelector("#memory-start");
+    const board = document.querySelector("#memory-board");
+    const memoryOutput = document.querySelector("#memory-output");
+
+    if (start && board && memoryOutput) {
+
+        start.addEventListener("click", () => {
+
+            board.innerHTML = "";
+            memoryOutput.textContent = "Moves: 0";
+
+            const values = [
+                "🌸", "⭐", "💜", "🌙", "🍓", "☁️",
+                "🌸", "⭐", "💜", "🌙", "🍓", "☁️"
+            ];
+
+            // Proper shuffle
+            for (let i = values.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [values[i], values[j]] = [values[j], values[i]];
+            }
+
+            let first = null;
+            let locked = false;
+            let moves = 0;
+            let matched = 0;
+
+            values.forEach(value => {
+
+                const tile = document.createElement("button");
+                tile.type = "button";
+                tile.className = "memory-tile";
+                tile.textContent = "?";
+
+                tile.addEventListener("click", () => {
+
+                    if (locked || tile.disabled || tile === first) return;
+
+                    tile.textContent = value;
+
+                    if (!first) {
+                        first = tile;
+                        return;
+                    }
+
+                    moves++;
+                    memoryOutput.textContent = `Moves: ${moves}`;
+
+                    if (first.textContent === value) {
+
+                        first.disabled = true;
+                        tile.disabled = true;
+
+                        first.classList.add("matched");
+                        tile.classList.add("matched");
+
+                        first = null;
+                        matched += 2;
+
+                        if (matched === values.length) {
+                            memoryOutput.textContent =
+                                `You matched them all in ${moves} moves! 🎉`;
+
+                            window.FormaProfile?.recordGame(
+                                "Memory Match",
+                                `${moves} moves`
+                            );
+                        }
+
+                    } else {
+
+                        locked = true;
+                        const previous = first;
+                        first = null;
+
+                        setTimeout(() => {
+                            previous.textContent = "?";
+                            tile.textContent = "?";
+                            locked = false;
+                        }, 700);
+
+                    }
+
+                });
+
+                board.appendChild(tile);
+
+            });
+
+        });
+
+    }
+
+
+    // =====================================
+    // 2. QUICK MATHS
+    // =====================================
+
+    let answer = null;
+    let round = 0;
+    let score = 0;
+
+    const mathQuestion = document.querySelector("#math-q");
+    const mathInput = document.querySelector("#math-input");
+    const mathCheck = document.querySelector("#math-check");
+    const mathOutput = document.querySelector("#math-out");
+
+    function nextMath() {
+
+        const a = 1 + Math.floor(Math.random() * 15);
+        const b = 1 + Math.floor(Math.random() * 15);
+
+        const operators = ["+", "−", "×"];
+        const operator = operators[
+            Math.floor(Math.random() * operators.length)
+        ];
+
+        if (operator === "+") answer = a + b;
+        if (operator === "−") answer = a - b;
+        if (operator === "×") answer = a * b;
+
+        mathQuestion.textContent = `${a} ${operator} ${b} = ?`;
+        mathInput.value = "";
+        mathInput.focus();
+
+    }
+
+    if (mathCheck && mathQuestion && mathInput && mathOutput) {
+
+        mathCheck.addEventListener("click", () => {
+
+            // Start or restart
+            if (answer === null && round === 0) {
+
+                score = 0;
+                round = 0;
+
+                nextMath();
+                mathOutput.textContent = "Question 1 of 10";
+
+                return;
+            }
+
+            if (answer === null) return;
+
+            if (mathInput.value.trim() === "") {
+                mathOutput.textContent = "Enter an answer first! 💜";
+                return;
+            }
+
+            if (Number(mathInput.value) === answer) {
+                score++;
+            }
+
+            round++;
+            answer = null;
+
+            if (round === 10) {
+
+                mathQuestion.textContent = "Challenge complete! 🎉";
+                mathOutput.textContent = `Your final score: ${score}/10 🏆`;
+                mathCheck.textContent = "Play again";
+
+                window.FormaProfile?.recordGame(
+                    "Quick Maths",
+                    `${score}/10`
+                );
+
+            } else {
+
+                mathOutput.textContent =
+                    `Score: ${score} · Question ${round + 1} of 10`;
+
+                nextMath();
+
+            }
+
+        });
+
+    }
+
+
+    // =====================================
+    // 3. TYPING SPRINT
+    // =====================================
+
+    let typingStarted = null;
+
+    const typingInput = document.querySelector("#typing-text");
+    const typingPrompt = document.querySelector("#typing-prompt");
+    const typingCheck = document.querySelector("#typing-check");
+    const typingOutput = document.querySelector("#typing-out");
+
+    if (typingInput && typingPrompt && typingCheck && typingOutput) {
+
+        typingInput.addEventListener("input", () => {
+
+            if (!typingStarted && typingInput.value.length > 0) {
+                typingStarted = Date.now();
+            }
+
+        });
+
+        typingCheck.addEventListener("click", () => {
+
+            const target = typingPrompt.textContent.trim();
+
+            if (typingInput.value.trim() !== target) {
+
+                typingOutput.textContent =
+                    "Not quite yet! Try matching the sentence exactly. 🌷";
+
+                return;
+            }
+
+            if (!typingStarted) {
+                typingOutput.textContent = "Start typing first!";
+                return;
+            }
+
+            const elapsed = (Date.now() - typingStarted) / 60000;
+
+            const wordCount = target.split(/\s+/).length;
+
+            const wpm = Math.round(wordCount / Math.max(elapsed, 0.01));
+
+            typingOutput.textContent =
+                `${wpm} words per minute! Amazing work! ✨`;
+
+            window.FormaProfile?.recordGame(
+                "Typing Sprint",
+                `${wpm} WPM`
+            );
+
+            typingStarted = null;
+            typingInput.value = "";
+
+        });
+
+    }
+
+
+    // =====================================
+    // 4. WORD SCRAMBLE
+    // =====================================
+
+    const words = [
+        "PURPLE",
+        "FOCUS",
+        "PLANET",
+        "FLOWER",
+        "GARDEN",
+        "CREATE"
+    ];
+
+    let currentWord = null;
+
+    const scrambleWord = document.querySelector("#scramble-word");
+    const scrambleInput = document.querySelector("#scramble-input");
+    const scrambleCheck = document.querySelector("#scramble-check");
+    const scrambleOutput = document.querySelector("#scramble-out");
+
+    function newScramble() {
+
+        currentWord = words[
+            Math.floor(Math.random() * words.length)
+        ];
+
+        const letters = currentWord.split("");
+
+        // Shuffle letters without accidentally leaving the word unchanged
+        let scrambled = currentWord;
+
+        while (scrambled === currentWord) {
+
+            for (let i = letters.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [letters[i], letters[j]] = [letters[j], letters[i]];
+            }
+
+            scrambled = letters.join("");
+        }
+
+        scrambleWord.textContent = scrambled;
+        scrambleInput.value = "";
+        scrambleOutput.textContent = "";
+        scrambleCheck.textContent = "Check word";
+
+    }
+
+    if (scrambleCheck && scrambleWord && scrambleInput && scrambleOutput) {
+
+        scrambleCheck.addEventListener("click", () => {
+
+            if (!currentWord) {
+                newScramble();
+                return;
+            }
+
+            if (scrambleInput.value.trim().toUpperCase() === currentWord) {
+
+                scrambleOutput.textContent = "Correct! You're amazing! ✨";
+
+                window.FormaProfile?.recordGame(
+                    "Word Scramble",
+                    "Solved"
+                );
+
+                currentWord = null;
+                scrambleCheck.textContent = "Next word";
+
+            } else {
+
+                scrambleOutput.textContent =
+                    "Not quite! Give it another try. 💜";
+
+            }
+
+        });
+
+    }
+
+
+    // =====================================
+    // 5. NUMBER SEQUENCE
+    // =====================================
+
+    const sequenceQuestion = document.querySelector("#sequence-q");
+    const sequenceInput = document.querySelector("#sequence-input");
+    const sequenceCheck = document.querySelector("#sequence-check");
+    const sequenceOutput = document.querySelector("#sequence-out");
+
+    let sequenceAnswer = null;
+
+    if (sequenceCheck && sequenceQuestion && sequenceInput && sequenceOutput) {
+
+        sequenceCheck.addEventListener("click", () => {
+
+            // Generate sequence
+            if (sequenceAnswer === null) {
+
+                const step = Math.random() < 0.5 ? 3 : 5;
+                const beginning = step === 3 ? 2 : 4;
+
+                sequenceAnswer = beginning + step * 4;
+
+                sequenceQuestion.textContent =
+                    `${beginning}, ${beginning + step}, ${beginning + step * 2}, ${beginning + step * 3}, ?`;
+
+                sequenceInput.value = "";
+                sequenceOutput.textContent = "";
+                sequenceCheck.textContent = "Check";
+
+                return;
+            }
+
+            if (sequenceInput.value.trim() === "") {
+                sequenceOutput.textContent = "Enter your answer first!";
+                return;
+            }
+
+            if (Number(sequenceInput.value) === sequenceAnswer) {
+
+                sequenceOutput.textContent = "You got it! 🎉";
+
+                window.FormaProfile?.recordGame(
+                    "Number Sequence",
+                    "Correct"
+                );
+
+            } else {
+
+                sequenceOutput.textContent =
+                    `Not quite! The answer was ${sequenceAnswer}. 💜`;
+
+            }
+
+            sequenceAnswer = null;
+            sequenceCheck.textContent = "Try another";
+
+        });
+
+    }
+
+
+    // =====================================
+    // 6. REACTION TEST
+    // =====================================
+
+    const reactionStart = document.querySelector("#reaction-start");
+    const reactionPad = document.querySelector("#reaction-pad");
+    const reactionOutput = document.querySelector("#reaction-out");
+
+    let ready = false;
+    let waiting = false;
+    let goAt = 0;
+    let timeout = null;
+
+    if (reactionStart && reactionPad && reactionOutput) {
+
+        reactionStart.addEventListener("click", () => {
+
+            clearTimeout(timeout);
+
+            ready = false;
+            waiting = true;
+
+            reactionPad.style.background = "#f5e7df";
+            reactionPad.textContent = "Wait for green...";
+            reactionOutput.textContent = "";
+
+            timeout = setTimeout(() => {
+
+                ready = true;
+                waiting = false;
+
+                goAt = performance.now();
+
+                reactionPad.style.background = "#dff3e4";
+                reactionPad.textContent = "CLICK NOW!";
+
+            }, 1200 + Math.random() * 3000);
+
+        });
+
+        reactionPad.addEventListener("click", () => {
+
+            if (waiting) {
+
+                clearTimeout(timeout);
+                timeout = null;
+
+                waiting = false;
+                ready = false;
+
+                reactionPad.textContent = "Too soon! Try again.";
+                reactionOutput.textContent =
+                    "Oops! Wait until the green color appears. 🌸";
+
+                return;
+
+            }
+
+            if (!ready) return;
+
+            const milliseconds = Math.round(
+                performance.now() - goAt
+            );
+
+            reactionOutput.textContent =
+                `Your reaction time: ${milliseconds} ms ⚡`;
+
+            window.FormaProfile?.recordGame(
+                "Reaction Test",
+                `${milliseconds} ms`
+            );
+
+            ready = false;
+
+            reactionPad.style.background = "#eee7f7";
+            reactionPad.textContent = "Nice reaction! 💜";
+
+        });
+
+    }
+
 });
+
