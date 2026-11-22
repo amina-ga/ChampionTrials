@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mood Calendar — Forma</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/mood-calendar.css">
+</head>
+
+<body class="mood-calendar-page">
+
+    <header class="navbar">
+        <button id="dark-mode" type="button" aria-label="Toggle dark mode">🌙</button>
+
+        <a href="index.html" class="logo">forma<span>.</span></a>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="my-space.html">My Space</a>
+            <a href="games.html">Mini Games</a>
+            <a href="calendar.html">Calendar</a>
+            <a href="growth.html">Growth Studio</a>
+            <a href="my-room.html">My Room ✦</a>
+            <a href="progress.html">My Progress</a>
+            <a href="future-me.html">Future Me</a>
+            <a href="mood-calendar.html" class="active">Mood Calendar</a>
+            <a href="profile.html">Profile</a>
+        </nav>
+
+        <a href="profile.html" class="nav-button">My profile ↗</a>
+    </header>
+
+    <main class="mood-container">
+
+        <!-- HERO -->
+        <section class="mood-hero">
+            <span class="mood-eyebrow">A MOMENT TO CHECK IN WITH YOURSELF ✦</span>
+
+            <h1>Your mood, your little story.</h1>
+
+            <p>
+                Every feeling deserves a little space. Look back at your
+                mood check-ins, notice your patterns and remember that
+                every day is different.
+            </p>
+
+            <div class="mood-hero-decoration">☁️ ♡ 🌷</div>
+        </section>
+
+        <!-- STATS -->
+        <section class="mood-stats">
+
+            <article class="mood-stat-card">
+                <span class="mood-stat-icon">📖</span>
+                <span class="mood-stat-label">Entries this month</span>
+                <strong id="month-entry-count">0</strong>
+            </article>
+
+            <article class="mood-stat-card">
+                <span class="mood-stat-icon">♡</span>
+                <span class="mood-stat-label">Most recorded mood</span>
+                <strong id="most-common-mood">—</strong>
+            </article>
+
+            <article class="mood-stat-card">
+                <span class="mood-stat-icon">🌱</span>
+                <span class="mood-stat-label">Days checked in</span>
+                <strong id="days-checked-in">0</strong>
+            </article>
+
+        </section>
+
+        <!-- CALENDAR -->
+        <section class="mood-calendar-card">
+
+            <div class="calendar-heading">
+                <div>
+                    <span class="section-kicker">YOUR MONTHLY OVERVIEW</span>
+                    <h2 id="mood-month-label">Month Year</h2>
+                    <p>Choose any day to see your mood entry.</p>
+                </div>
+
+                <div class="month-controls">
+                    <button type="button" id="mood-prev-month" aria-label="Previous month">
+                        ←
+                    </button>
+
+                    <button type="button" id="mood-today">
+                        Today
+                    </button>
+
+                    <button type="button" id="mood-next-month" aria-label="Next month">
+                        →
+                    </button>
+                </div>
+            </div>
+
+            <div class="mood-calendar-grid" id="mood-calendar-grid">
+
+                <div class="calendar-weekday">Mon</div>
+                <div class="calendar-weekday">Tue</div>
+                <div class="calendar-weekday">Wed</div>
+                <div class="calendar-weekday">Thu</div>
+                <div class="calendar-weekday">Fri</div>
+                <div class="calendar-weekday">Sat</div>
+                <div class="calendar-weekday">Sun</div>
+
+                <!-- Calendar days are added by JavaScript -->
+
+            </div>
+
+            <div class="mood-legend">
+                <span><i class="mood-dot happy"></i> Happy</span>
+                <span><i class="mood-dot excited"></i> Excited</span>
+                <span><i class="mood-dot calm"></i> Calm</span>
+                <span><i class="mood-dot okay"></i> Okay</span>
+                <span><i class="mood-dot sad"></i> Sad</span>
+                <span><i class="mood-dot stressed"></i> Stressed</span>
+            </div>
+
+        </section>
+
+        <!-- SELECTED DAY -->
+        <section class="selected-mood-card">
+
+            <div class="selected-mood-heading">
+                <div>
+                    <span class="section-kicker">A CLOSER LOOK</span>
+                    <h2 id="selected-mood-date">Select a day</h2>
+                </div>
+
+                <span id="selected-mood-emoji" class="selected-mood-emoji">♡</span>
+            </div>
+
+            <div id="selected-mood-content" class="selected-mood-content">
+                <p class="mood-empty">
+                    Select a day on the calendar to see what you recorded.
+                </p>
+            </div>
+
+            <a href="growth.html" class="mood-page-link">
+                Write a new mood entry in Growth Studio →
+            </a>
+
+        </section>
+
+        <!-- MOOD BREAKDOWN -->
+        <section class="mood-breakdown-card">
+
+            <div class="section-heading">
+                <div>
+                    <span class="section-kicker">GET TO KNOW YOUR PATTERNS</span>
+                    <h2>Your mood breakdown</h2>
+                    <p>See how often each mood appeared this month.</p>
+                </div>
+
+                <span class="breakdown-decoration">🌸</span>
+            </div>
+
+            <div id="mood-breakdown" class="mood-breakdown">
+                <p class="mood-empty">
+                    Your mood breakdown will appear once you start checking in.
+                </p>
+            </div>
+
+        </section>
+
+        <!-- FOOTNOTE -->
+        <section class="mood-reminder">
+            <span>♡</span>
+            <h2>All feelings are welcome here.</h2>
+            <p>
+                Your calendar isn't a scorecard. You don't need to feel
+                happy every day. Taking a moment to notice how you feel
+                is already a meaningful step.
+            </p>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <p>forma<span>.</span> — a little space to grow.</p>
+    </footer>
+
+    <script src="js/theme.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/mood-calendar.js"></script>
+
+</body>
+</html>
