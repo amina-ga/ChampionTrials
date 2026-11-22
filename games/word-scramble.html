@@ -1,6 +1,238 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Word Scramble — Forma</title><link rel="stylesheet" href="../css/style.css"></head><body>
-<header class="navbar"><button id="dark-mode" type="button" aria-label="Toggle dark mode">🌙</button><a href="../index.html" class="logo">forma<span>.</span></a><nav><a href="../index.html">Home</a><a href="../my-space.html">My Space</a><a href="../games.html">Mini Games ✦</a><a href="../calendar.html">Calendar</a><a href="../profile.html">Profile</a></nav><a href="../games.html" class="nav-button">All games ↗</a></header>
-<section class="page-hero"><span class="tag">MINI GAME</span><h1>Word Scramble<br><span>Ready when you are.</span></h1><p>Unscramble the letters to reveal the hidden word.</p></section>
-<main class="page-wrap"><div class="page-nav"><a href="../games.html">← All mini games</a><a href="../my-space.html">My Space</a><a href="../index.html">Home</a></div><section class="single-game-panel"><div class="single-game-logo">🔤</div><h2>Word Scramble</h2><p>Unscramble the letters to reveal the hidden word.</p><div class="single-game-content"><h3 id="scramble-word">Press start</h3><input id="scramble-input" placeholder="Your guess"><button id="scramble-check">Start round</button><div id="scramble-out" class="game-output"></div></div></section></main>
-<footer class="page-footer"><a class="logo" href="../index.html">forma<span>.</span></a><span>Make space for great things. ✦</span><a href="../games.html">Back to all games</a></footer>
-<script src="../js/theme.js"></script><script src="../js/auth.js"></script><script src="../js/games.js"></script></body></html>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Word Scramble — Forma</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        .single-game-panel {
+            max-width: 650px;
+            margin: 40px auto;
+            padding: 45px 30px;
+            text-align: center;
+            border-radius: 25px;
+            background: #fff;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.05);
+        }
+
+        .single-game-logo {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .single-game-content {
+            margin-top: 30px;
+        }
+
+        #scramble-word {
+            font-size: 2.5rem;
+            letter-spacing: 8px;
+            color: #a47bb8;
+            margin: 25px 0;
+        }
+
+        #scramble-input {
+            width: 100%;
+            max-width: 350px;
+            padding: 14px;
+            border: 1px solid #e6d9eb;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        #scramble-check {
+            display: block;
+            margin: 0 auto;
+            padding: 13px 28px;
+            border: none;
+            border-radius: 12px;
+            background: #b895cc;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        #scramble-check:hover {
+            background: #9870b1;
+            transform: translateY(-2px);
+        }
+
+        .game-output {
+            margin-top: 20px;
+            min-height: 25px;
+        }
+
+        body.dark-mode .single-game-panel {
+            background: #282234;
+            color: #f3edf7;
+        }
+
+        body.dark-mode #scramble-input {
+            background: #30283b;
+            color: white;
+            border-color: #51445f;
+        }
+
+        @media(max-width: 600px) {
+            .single-game-panel {
+                padding: 30px 18px;
+            }
+
+            #scramble-word {
+                font-size: 2rem;
+                letter-spacing: 5px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+
+    <header class="navbar">
+
+        <button id="dark-mode" type="button"
+            aria-label="Toggle dark mode">
+            🌙
+        </button>
+
+        <a href="../index.html" class="logo">
+            forma<span>.</span>
+        </a>
+
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="../my-space.html">My Space</a>
+            <a href="../games.html">Mini Games ✦</a>
+            <a href="../calendar.html">Calendar</a>
+            <a href="../profile.html">Profile</a>
+        </nav>
+
+        <a href="../games.html" class="nav-button">
+            All games ↗
+        </a>
+
+    </header>
+
+
+    <!-- HERO -->
+
+    <section class="page-hero">
+
+        <span class="tag">MINI GAME</span>
+
+        <h1>
+            Word Scramble<br>
+            <span>Ready when you are.</span>
+        </h1>
+
+        <p>
+            Unscramble the letters to reveal the hidden word.
+        </p>
+
+    </section>
+
+
+    <!-- GAME -->
+
+    <main class="page-wrap">
+
+        <div class="page-nav">
+
+            <a href="../games.html">
+                ← All mini games
+            </a>
+
+            <a href="../my-space.html">
+                My Space
+            </a>
+
+            <a href="../index.html">
+                Home
+            </a>
+
+        </div>
+
+
+        <section class="single-game-panel">
+
+            <div class="single-game-logo">
+                🔤
+            </div>
+
+            <h2>Word Scramble</h2>
+
+            <p>
+                A little brain exercise for your day.
+                Can you find the hidden word?
+            </p>
+
+
+            <div class="single-game-content">
+
+                <h3 id="scramble-word">
+                    Ready to play?
+                </h3>
+
+                <input
+                    id="scramble-input"
+                    type="text"
+                    placeholder="Type your answer..."
+                    autocomplete="off"
+                    aria-label="Your word guess"
+                >
+
+                <button id="scramble-check" type="button">
+                    Start round
+                </button>
+
+                <div
+                    id="scramble-out"
+                    class="game-output"
+                    aria-live="polite"
+                ></div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer class="page-footer">
+
+        <a class="logo" href="../index.html">
+            forma<span>.</span>
+        </a>
+
+        <span>
+            Make space for great things. ✦
+        </span>
+
+        <a href="../games.html">
+            Back to all games
+        </a>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="../js/theme.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/games.js"></script>
+
+</body>
+</html>
