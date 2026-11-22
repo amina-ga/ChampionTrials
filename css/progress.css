@@ -1,0 +1,693 @@
+
+/* =========================================
+   FORMA — MY PROGRESS
+========================================= */
+
+.progress-page {
+    --progress-bg: #f8f6f2;
+    --progress-card: #ffffff;
+    --progress-accent: #a88cbd;
+    --progress-accent-dark: #806697;
+    --progress-text: #302d31;
+    --progress-muted: #858087;
+    --progress-border: rgba(90, 75, 95, 0.1);
+
+    background: var(--progress-bg);
+    color: var(--progress-text);
+}
+
+.progress-container {
+    width: min(1150px, 92%);
+    margin: 0 auto;
+    padding: 55px 0 75px;
+}
+
+.progress-hero {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.progress-eyebrow,
+.section-kicker {
+    display: block;
+    color: var(--progress-accent-dark);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.progress-hero h1 {
+    margin: 0 0 12px;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    line-height: 1.2;
+}
+
+.progress-hero > p {
+    max-width: 600px;
+    margin: 0 auto;
+    color: var(--progress-muted);
+    line-height: 1.7;
+}
+
+.progress-welcome {
+    display: inline-flex;
+    gap: 7px;
+    align-items: center;
+    margin-top: 20px;
+    padding: 9px 17px;
+    background: var(--progress-card);
+    border-radius: 30px;
+    font-size: 0.9rem;
+}
+
+.progress-welcome strong {
+    color: var(--progress-accent-dark);
+}
+
+/* OVERVIEW CARDS */
+
+.overview-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 15px;
+    margin-bottom: 22px;
+}
+
+.overview-card {
+    padding: 20px;
+    background: var(--progress-card);
+    border: 1px solid var(--progress-border);
+    border-radius: 17px;
+}
+
+.overview-icon {
+    display: grid;
+    place-items: center;
+    width: 39px;
+    height: 39px;
+    margin-bottom: 14px;
+    background: #f1ebf6;
+    color: var(--progress-accent-dark);
+    border-radius: 12px;
+    font-size: 1.25rem;
+}
+
+.overview-label {
+    display: block;
+    color: var(--progress-muted);
+    font-size: 0.82rem;
+}
+
+.overview-card strong {
+    display: block;
+    margin: 5px 0;
+    font-size: 1.8rem;
+}
+
+.overview-card small {
+    color: var(--progress-muted);
+    font-size: 0.72rem;
+}
+
+/* PANELS */
+
+.progress-panel {
+    min-width: 0;
+    padding: 25px;
+    background: var(--progress-card);
+    border: 1px solid var(--progress-border);
+    border-radius: 19px;
+    box-shadow: 0 7px 25px rgba(55, 45, 65, 0.035);
+    margin-bottom: 22px;
+}
+
+.progress-section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 23px;
+}
+
+.progress-section-heading h2 {
+    margin: 0 0 7px;
+    font-size: 1.4rem;
+}
+
+.progress-section-heading p {
+    margin: 0;
+    color: var(--progress-muted);
+    font-size: 0.87rem;
+}
+
+.heading-decoration {
+    font-size: 1.8rem;
+}
+
+/* WEEKLY ACTIVITY */
+
+.weekly-summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 45px;
+    margin-bottom: 25px;
+}
+
+.weekly-summary strong,
+.weekly-summary span {
+    display: block;
+}
+
+.weekly-summary strong {
+    font-size: 1.7rem;
+}
+
+.weekly-summary span {
+    color: var(--progress-muted);
+    font-size: 0.8rem;
+}
+
+.activity-chart {
+    min-height: 190px;
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    align-items: end;
+    gap: 15px;
+    padding: 15px 5px 0;
+    border-bottom: 1px solid var(--progress-border);
+}
+
+.activity-day {
+    min-width: 0;
+    height: 175px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 8px;
+}
+
+.activity-bars {
+    width: min(100%, 43px);
+    height: 135px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 3px;
+}
+
+.activity-bar {
+    width: 100%;
+    min-height: 0;
+    border-radius: 5px 5px 2px 2px;
+    transition: height 0.35s ease;
+}
+
+.activity-bar.habit-bar {
+    background: #a9bd9f;
+}
+
+.activity-bar.focus-bar {
+    background: #a88cbd;
+}
+
+.activity-bar.mood-bar {
+    background: #e8b0b9;
+}
+
+.activity-day strong {
+    color: var(--progress-text);
+    font-size: 0.78rem;
+}
+
+.activity-day small {
+    color: var(--progress-muted);
+    font-size: 0.68rem;
+}
+
+.chart-legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 22px;
+    margin-top: 18px;
+    color: var(--progress-muted);
+    font-size: 0.78rem;
+}
+
+.chart-legend span {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.legend-dot {
+    width: 9px;
+    height: 9px;
+    display: inline-block;
+    border-radius: 50%;
+}
+
+.habit-dot {
+    background: #a9bd9f;
+}
+
+.focus-dot {
+    background: #a88cbd;
+}
+
+.mood-dot {
+    background: #e8b0b9;
+}
+
+/* TWO COLUMN SECTIONS */
+
+.progress-two-column {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.progress-two-column .progress-panel {
+    margin-bottom: 0;
+}
+
+/* HABIT PROGRESS */
+
+.habit-summary {
+    display: flex;
+    align-items: baseline;
+    gap: 9px;
+    margin-bottom: 12px;
+}
+
+.habit-summary strong {
+    font-size: 1.7rem;
+}
+
+.habit-summary span {
+    color: var(--progress-muted);
+    font-size: 0.8rem;
+}
+
+.progress-track {
+    width: 100%;
+    height: 10px;
+    overflow: hidden;
+    background: #eee9f0;
+    border-radius: 20px;
+}
+
+.progress-fill {
+    width: 0;
+    height: 100%;
+    background: #a9bd9f;
+    border-radius: inherit;
+    transition: width 0.35s ease;
+}
+
+.habit-progress-list {
+    display: grid;
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.habit-progress-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--progress-border);
+    font-size: 0.87rem;
+}
+
+.habit-progress-item:last-child {
+    border-bottom: 0;
+}
+
+.habit-status {
+    color: var(--progress-muted);
+    font-size: 0.75rem;
+    white-space: nowrap;
+}
+
+.habit-status.done {
+    color: #71906c;
+    font-weight: 700;
+}
+
+/* FOCUS TIME */
+
+.focus-highlight {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 23px;
+    background: #f3eef8;
+    border-radius: 15px;
+}
+
+.focus-highlight strong {
+    color: var(--progress-accent-dark);
+    font-size: 2rem;
+}
+
+.focus-highlight span {
+    color: var(--progress-muted);
+    font-size: 0.8rem;
+}
+
+.focus-details {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin: 17px 0 20px;
+}
+
+.focus-details div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.focus-details span {
+    color: var(--progress-muted);
+    font-size: 0.76rem;
+}
+
+.focus-details strong {
+    font-size: 1.1rem;
+}
+
+/* MOOD JOURNAL */
+
+.mood-summary,
+.calendar-summary {
+    display: flex;
+    align-items: baseline;
+    gap: 9px;
+    margin-bottom: 17px;
+}
+
+.mood-summary strong,
+.calendar-summary strong {
+    font-size: 1.8rem;
+}
+
+.mood-summary span,
+.calendar-summary span {
+    color: var(--progress-muted);
+    font-size: 0.82rem;
+}
+
+.mood-history {
+    display: grid;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.mood-entry-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px;
+    background: var(--progress-bg);
+    border-radius: 11px;
+}
+
+.mood-entry-emoji {
+    font-size: 1.5rem;
+}
+
+.mood-entry-info {
+    min-width: 0;
+    flex: 1;
+}
+
+.mood-entry-info strong,
+.mood-entry-info small {
+    display: block;
+}
+
+.mood-entry-info strong {
+    font-size: 0.85rem;
+    text-transform: capitalize;
+}
+
+.mood-entry-info small {
+    margin-top: 3px;
+    color: var(--progress-muted);
+    font-size: 0.73rem;
+}
+
+/* CALENDAR EVENTS */
+
+.upcoming-events {
+    display: grid;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.upcoming-event {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    padding: 11px;
+    background: var(--progress-bg);
+    border-radius: 11px;
+}
+
+.event-date-box {
+    min-width: 48px;
+    padding: 7px 4px;
+    text-align: center;
+    background: var(--progress-card);
+    border-radius: 9px;
+}
+
+.event-date-box strong,
+.event-date-box small {
+    display: block;
+}
+
+.event-date-box strong {
+    font-size: 1.05rem;
+}
+
+.event-date-box small {
+    color: var(--progress-muted);
+    font-size: 0.65rem;
+    text-transform: uppercase;
+}
+
+.event-info {
+    min-width: 0;
+}
+
+.event-info strong,
+.event-info small {
+    display: block;
+}
+
+.event-info strong {
+    overflow: hidden;
+    font-size: 0.85rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.event-info small {
+    margin-top: 4px;
+    color: var(--progress-muted);
+    font-size: 0.73rem;
+}
+
+/* GAMES */
+
+.game-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 13px;
+    margin-bottom: 18px;
+}
+
+.game-summary-grid > div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 17px;
+    background: var(--progress-bg);
+    border-radius: 12px;
+}
+
+.game-summary-grid span {
+    color: var(--progress-muted);
+    font-size: 0.78rem;
+}
+
+.game-summary-grid strong {
+    font-size: 1.5rem;
+}
+
+.game-progress-list {
+    display: grid;
+    gap: 9px;
+    margin-bottom: 15px;
+}
+
+.game-progress-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 11px 13px;
+    background: var(--progress-bg);
+    border-radius: 10px;
+    font-size: 0.85rem;
+}
+
+.game-progress-item strong {
+    color: var(--progress-accent-dark);
+}
+
+/* LINKS AND EMPTY STATES */
+
+.progress-link {
+    display: inline-block;
+    margin-top: 8px;
+    color: var(--progress-accent-dark);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.progress-link:hover {
+    text-decoration: underline;
+}
+
+.empty-progress {
+    padding: 15px;
+    background: var(--progress-bg);
+    border-radius: 11px;
+    color: var(--progress-muted);
+    font-size: 0.83rem;
+    line-height: 1.6;
+}
+
+/* MOTIVATION */
+
+.progress-encouragement {
+    margin-top: 22px;
+    padding: 38px 25px;
+    text-align: center;
+    background: #eee7f4;
+    border-radius: 19px;
+}
+
+.progress-encouragement > span {
+    color: var(--progress-accent-dark);
+    font-size: 1.8rem;
+}
+
+.progress-encouragement h2 {
+    margin: 10px 0;
+    font-size: 1.5rem;
+}
+
+.progress-encouragement p {
+    max-width: 600px;
+    margin: 0 auto 17px;
+    color: #746a79;
+    font-size: 0.9rem;
+    line-height: 1.7;
+}
+
+.progress-encouragement a {
+    color: var(--progress-accent-dark);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.progress-encouragement a:hover {
+    text-decoration: underline;
+}
+
+/* FOOTER */
+
+.progress-page .site-footer {
+    padding: 25px;
+    text-align: center;
+    color: var(--progress-muted);
+    font-size: 0.85rem;
+}
+
+.progress-page .site-footer span {
+    color: var(--progress-accent-dark);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+    .overview-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .progress-two-column {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .progress-two-column .progress-panel {
+        margin-bottom: 22px;
+    }
+}
+
+@media (max-width: 600px) {
+    .progress-container {
+        width: 94%;
+        padding-top: 35px;
+    }
+
+    .overview-grid {
+        gap: 9px;
+    }
+
+    .overview-card {
+        padding: 14px;
+    }
+
+    .overview-card strong {
+        font-size: 1.5rem;
+    }
+
+    .progress-panel {
+        padding: 18px;
+    }
+
+    .weekly-summary {
+        gap: 25px;
+    }
+
+    .activity-chart {
+        gap: 5px;
+    }
+
+    .activity-day {
+        height: 155px;
+    }
+
+    .activity-bars {
+        height: 115px;
+    }
+
+    .chart-legend {
+        gap: 12px;
+        font-size: 0.7rem;
+    }
+
+    .progress-encouragement {
+        padding: 28px 18px;
+    }
+}

@@ -1,0 +1,555 @@
+
+/* =========================================
+   FORMA — FUTURE ME
+========================================= */
+
+.future-me-page {
+    --future-bg: #faf7f5;
+    --future-card: #ffffff;
+    --future-accent: #b58da5;
+    --future-accent-dark: #8d667f;
+    --future-text: #332d32;
+    --future-muted: #898087;
+    --future-border: rgba(100, 70, 90, 0.12);
+
+    background: var(--future-bg);
+    color: var(--future-text);
+}
+
+.future-container {
+    width: min(1000px, 92%);
+    margin: 0 auto;
+    padding: 55px 0 75px;
+}
+
+/* HERO */
+
+.future-hero {
+    position: relative;
+    overflow: hidden;
+    padding: 55px 25px;
+    margin-bottom: 28px;
+    text-align: center;
+    background: #f1e8ef;
+    border-radius: 22px;
+}
+
+.future-eyebrow,
+.section-kicker {
+    display: block;
+    margin-bottom: 11px;
+    color: var(--future-accent-dark);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.future-hero h1 {
+    margin: 0 0 13px;
+    font-size: clamp(2.3rem, 6vw, 3.8rem);
+    line-height: 1.15;
+}
+
+.future-hero > p {
+    max-width: 590px;
+    margin: 0 auto;
+    color: #786d77;
+    font-size: 0.95rem;
+    line-height: 1.8;
+}
+
+.future-hero-decoration {
+    margin-top: 20px;
+    font-size: 2.2rem;
+}
+
+/* SHARED HEADINGS */
+
+.future-section-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.future-section-heading h2 {
+    margin: 0 0 7px;
+    font-size: 1.55rem;
+}
+
+.future-section-heading p {
+    margin: 0;
+    color: var(--future-muted);
+    font-size: 0.87rem;
+    line-height: 1.6;
+}
+
+.future-heading-icon {
+    font-size: 1.8rem;
+}
+
+/* WRITE CARD */
+
+.future-write-card {
+    padding: 30px;
+    margin-bottom: 45px;
+    background: var(--future-card);
+    border: 1px solid var(--future-border);
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(65, 45, 60, 0.035);
+}
+
+.future-field {
+    margin-bottom: 22px;
+}
+
+.future-field label {
+    display: block;
+    margin-bottom: 9px;
+    font-size: 0.88rem;
+    font-weight: 700;
+}
+
+.future-field input,
+.future-field textarea {
+    width: 100%;
+    padding: 13px 15px;
+    color: var(--future-text);
+    background: var(--future-bg);
+    border: 1px solid var(--future-border);
+    border-radius: 11px;
+    outline: none;
+    font: inherit;
+    font-size: 0.9rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.future-field input:focus,
+.future-field textarea:focus {
+    border-color: var(--future-accent);
+    box-shadow: 0 0 0 3px rgba(181, 141, 165, 0.13);
+}
+
+.future-field textarea {
+    min-height: 190px;
+    resize: vertical;
+    line-height: 1.8;
+}
+
+.future-field input::placeholder,
+.future-field textarea::placeholder {
+    color: #aaa1a8;
+}
+
+.future-field small {
+    display: block;
+    margin-top: 8px;
+    color: var(--future-muted);
+    font-size: 0.76rem;
+}
+
+.letter-character-count {
+    margin-top: 7px;
+    color: var(--future-muted);
+    font-size: 0.74rem;
+    text-align: right;
+}
+
+.future-submit-button {
+    padding: 13px 22px;
+    color: white;
+    background: var(--future-accent-dark);
+    border: none;
+    border-radius: 30px;
+    font: inherit;
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.future-submit-button:hover {
+    background: #76536a;
+    transform: translateY(-2px);
+}
+
+.future-form-message {
+    min-height: 20px;
+    margin: 13px 0 0;
+    color: #65845f;
+    font-size: 0.83rem;
+}
+
+/* LETTER COLLECTION */
+
+.future-collection {
+    margin-bottom: 35px;
+}
+
+.letter-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 13px;
+    margin-bottom: 23px;
+}
+
+.letter-stats > div {
+    padding: 18px;
+    background: var(--future-card);
+    border: 1px solid var(--future-border);
+    border-radius: 14px;
+    text-align: center;
+}
+
+.letter-stats strong,
+.letter-stats span {
+    display: block;
+}
+
+.letter-stats strong {
+    margin-bottom: 5px;
+    color: var(--future-accent-dark);
+    font-size: 1.7rem;
+}
+
+.letter-stats span {
+    color: var(--future-muted);
+    font-size: 0.78rem;
+}
+
+/* FILTER BUTTONS */
+
+.letter-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-bottom: 18px;
+}
+
+.letter-filter {
+    padding: 9px 15px;
+    color: var(--future-muted);
+    background: var(--future-card);
+    border: 1px solid var(--future-border);
+    border-radius: 25px;
+    font: inherit;
+    font-size: 0.79rem;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.letter-filter:hover,
+.letter-filter.active {
+    color: white;
+    background: var(--future-accent-dark);
+    border-color: var(--future-accent-dark);
+}
+
+/* LETTER CARDS */
+
+.future-letter-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+}
+
+.future-letter-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding: 21px;
+    background: var(--future-card);
+    border: 1px solid var(--future-border);
+    border-radius: 16px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.future-letter-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 9px 23px rgba(65, 45, 60, 0.07);
+}
+
+.letter-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.letter-envelope {
+    font-size: 1.6rem;
+}
+
+.letter-status {
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 0.68rem;
+    font-weight: 700;
+}
+
+.letter-status.waiting {
+    color: #826b8e;
+    background: #f0eaf4;
+}
+
+.letter-status.ready {
+    color: #5d805b;
+    background: #eaf2e7;
+}
+
+.future-letter-card h3 {
+    overflow-wrap: anywhere;
+    margin: 0 0 9px;
+    font-size: 1.05rem;
+}
+
+.future-letter-card p {
+    margin: 0 0 15px;
+    color: var(--future-muted);
+    font-size: 0.81rem;
+    line-height: 1.6;
+}
+
+.letter-card-date {
+    margin-top: auto;
+    padding-top: 10px;
+    color: var(--future-muted);
+    font-size: 0.74rem;
+}
+
+.letter-card-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+}
+
+.letter-card-button {
+    padding: 9px 13px;
+    color: white;
+    background: var(--future-accent-dark);
+    border: none;
+    border-radius: 20px;
+    font: inherit;
+    font-size: 0.76rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.letter-card-button:disabled {
+    color: var(--future-muted);
+    background: #eee9ed;
+    cursor: not-allowed;
+}
+
+.letter-delete-button {
+    padding: 9px 13px;
+    color: #986d79;
+    background: transparent;
+    border: 1px solid var(--future-border);
+    border-radius: 20px;
+    font: inherit;
+    font-size: 0.76rem;
+    cursor: pointer;
+}
+
+.letter-delete-button:hover {
+    background: #f8eeee;
+}
+
+/* EMPTY STATE */
+
+.future-empty-state {
+    grid-column: 1 / -1;
+    padding: 40px 20px;
+    background: var(--future-card);
+    border: 1px dashed var(--future-border);
+    border-radius: 16px;
+    text-align: center;
+}
+
+.future-empty-state > span {
+    font-size: 2.5rem;
+}
+
+.future-empty-state h3 {
+    margin: 13px 0 7px;
+    font-size: 1.05rem;
+}
+
+.future-empty-state p {
+    margin: 0;
+    color: var(--future-muted);
+    font-size: 0.84rem;
+    line-height: 1.6;
+}
+
+/* INSPIRATION */
+
+.future-inspiration {
+    padding: 38px 25px;
+    background: #f1e8ef;
+    border-radius: 19px;
+    text-align: center;
+}
+
+.future-inspiration > span {
+    color: var(--future-accent-dark);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.future-inspiration h2 {
+    max-width: 650px;
+    margin: 13px auto;
+    font-size: 1.55rem;
+    line-height: 1.4;
+}
+
+.future-inspiration p {
+    max-width: 600px;
+    margin: 0 auto;
+    color: #786d77;
+    font-size: 0.88rem;
+    line-height: 1.8;
+}
+
+/* LETTER MODAL */
+
+.letter-modal {
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(35, 27, 35, 0.58);
+}
+
+.letter-modal.show {
+    display: flex;
+}
+
+.letter-modal-content {
+    position: relative;
+    width: min(620px, 100%);
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 38px;
+    background: #fffaf7;
+    border-radius: 18px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
+}
+
+.close-letter-modal {
+    position: absolute;
+    top: 12px;
+    right: 17px;
+    width: 35px;
+    height: 35px;
+    color: #786d77;
+    background: transparent;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+.modal-eyebrow {
+    display: block;
+    margin-bottom: 13px;
+    color: var(--future-accent-dark);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.letter-modal-content h2 {
+    margin: 0 0 9px;
+    font-size: 1.7rem;
+    overflow-wrap: anywhere;
+}
+
+.modal-letter-date {
+    margin-bottom: 20px;
+    color: #92858e;
+    font-size: 0.78rem;
+}
+
+.modal-letter-message {
+    padding: 20px;
+    background: white;
+    border: 1px solid #eee5eb;
+    border-radius: 12px;
+    color: #514650;
+    font-size: 0.92rem;
+    line-height: 1.9;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.modal-signature {
+    margin: 20px 0 0;
+    color: var(--future-accent-dark);
+    font-style: italic;
+    text-align: right;
+}
+
+/* FOOTER */
+
+.future-me-page .site-footer {
+    padding: 25px;
+    color: var(--future-muted);
+    font-size: 0.85rem;
+    text-align: center;
+}
+
+.future-me-page .site-footer span {
+    color: var(--future-accent-dark);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 700px) {
+    .future-container {
+        width: 94%;
+        padding-top: 35px;
+    }
+
+    .future-hero {
+        padding: 40px 20px;
+    }
+
+    .future-write-card {
+        padding: 20px;
+    }
+
+    .future-letter-list {
+        grid-template-columns: 1fr;
+    }
+
+    .letter-modal-content {
+        padding: 30px 22px;
+    }
+}
+
+@media (max-width: 430px) {
+    .letter-stats {
+        gap: 7px;
+    }
+
+    .letter-stats > div {
+        padding: 13px 7px;
+    }
+
+    .letter-stats strong {
+        font-size: 1.4rem;
+    }
+
+    .letter-stats span {
+        font-size: 0.68rem;
+    }
+}

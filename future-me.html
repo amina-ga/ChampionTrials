@@ -1,0 +1,221 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Future Me — Forma</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/future-me.css">
+</head>
+
+<body class="future-me-page">
+
+    <header class="navbar">
+        <button id="dark-mode" type="button" aria-label="Toggle dark mode">🌙</button>
+
+        <a href="index.html" class="logo">forma<span>.</span></a>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="my-space.html">My Space</a>
+            <a href="games.html">Mini Games</a>
+            <a href="calendar.html">Calendar</a>
+            <a href="growth.html">Growth Studio</a>
+            <a href="my-room.html">My Room ✦</a>
+            <a href="progress.html">My Progress</a>
+            <a href="future-me.html" class="active">Future Me</a>
+            <a href="profile.html">Profile</a>
+        </nav>
+
+        <a href="profile.html" class="nav-button">My profile ↗</a>
+    </header>
+
+    <main class="future-container">
+
+        <!-- HERO -->
+        <section class="future-hero">
+            <span class="future-eyebrow">A LITTLE NOTE THROUGH TIME ✦</span>
+
+            <h1>Dear future me...</h1>
+
+            <p>
+                Write down your thoughts, dreams, hopes and reminders.
+                Choose a date to open your letter and leave a little
+                something for the person you're becoming.
+            </p>
+
+            <div class="future-hero-decoration">✉️</div>
+        </section>
+
+        <!-- LETTER FORM -->
+        <section class="future-write-card">
+
+            <div class="future-section-heading">
+                <div>
+                    <span class="section-kicker">YOUR TIME CAPSULE</span>
+                    <h2>Write a letter</h2>
+                    <p>There's no right or wrong thing to write.</p>
+                </div>
+
+                <span class="future-heading-icon">♡</span>
+            </div>
+
+            <form id="future-letter-form">
+
+                <div class="future-field">
+                    <label for="letter-title">Give your letter a title</label>
+                    <input
+                        type="text"
+                        id="letter-title"
+                        maxlength="70"
+                        placeholder="A little reminder for myself..."
+                        required
+                    >
+                </div>
+
+                <div class="future-field">
+                    <label for="letter-message">What would you like to tell your future self?</label>
+                    <textarea
+                        id="letter-message"
+                        rows="9"
+                        maxlength="5000"
+                        placeholder="Dear future me,
+
+I hope you're doing well. I want you to remember..."
+                        required
+                    ></textarea>
+
+                    <div class="letter-character-count">
+                        <span id="letter-char-count">0</span> / 5000
+                    </div>
+                </div>
+
+                <div class="future-field">
+                    <label for="letter-open-date">When should this letter be opened?</label>
+                    <input
+                        type="date"
+                        id="letter-open-date"
+                        required
+                    >
+                    <small>Choose a future date. Your letter will stay locked until then.</small>
+                </div>
+
+                <button type="submit" class="future-submit-button">
+                    Seal my letter ✉️
+                </button>
+
+                <p id="letter-form-message" class="future-form-message" aria-live="polite"></p>
+
+            </form>
+        </section>
+
+        <!-- LETTER COLLECTION -->
+        <section class="future-collection">
+
+            <div class="future-section-heading">
+                <div>
+                    <span class="section-kicker">YOUR LITTLE TIME CAPSULES</span>
+                    <h2>Your letters</h2>
+                    <p>Every letter is a message from a past version of you.</p>
+                </div>
+
+                <span class="future-heading-icon">📮</span>
+            </div>
+
+            <div class="letter-stats">
+                <div>
+                    <strong id="letter-total">0</strong>
+                    <span>Letters written</span>
+                </div>
+
+                <div>
+                    <strong id="letter-locked">0</strong>
+                    <span>Waiting to open</span>
+                </div>
+
+                <div>
+                    <strong id="letter-opened">0</strong>
+                    <span>Ready to read</span>
+                </div>
+            </div>
+
+            <div class="letter-filters">
+                <button type="button" class="letter-filter active" data-filter="all">
+                    All letters
+                </button>
+
+                <button type="button" class="letter-filter" data-filter="waiting">
+                    Waiting
+                </button>
+
+                <button type="button" class="letter-filter" data-filter="ready">
+                    Ready to open
+                </button>
+            </div>
+
+            <div id="future-letter-list" class="future-letter-list">
+                <div class="future-empty-state">
+                    <span>💌</span>
+                    <h3>Your first letter is waiting to be written.</h3>
+                    <p>Write something today that your future self will love reading.</p>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- INSPIRATION -->
+        <section class="future-inspiration">
+            <span>✦ A LITTLE REMINDER ✦</span>
+            <h2>You are allowed to grow, change and begin again.</h2>
+            <p>
+                One day, you'll look back and realise how much you've
+                learned, how far you've come and how brave you were
+                to keep going.
+            </p>
+        </section>
+
+    </main>
+
+    <!-- LETTER VIEWER -->
+    <div
+        id="letter-modal"
+        class="letter-modal"
+        aria-hidden="true"
+    >
+        <div class="letter-modal-content" role="dialog" aria-modal="true"
+            aria-labelledby="modal-letter-title">
+
+            <button
+                type="button"
+                id="close-letter-modal"
+                class="close-letter-modal"
+                aria-label="Close letter"
+            >
+                ×
+            </button>
+
+            <span class="modal-eyebrow">A MESSAGE FROM YOUR PAST SELF ♡</span>
+
+            <h2 id="modal-letter-title">Your letter</h2>
+
+            <p id="modal-letter-date" class="modal-letter-date"></p>
+
+            <div id="modal-letter-message" class="modal-letter-message"></div>
+
+            <p class="modal-signature">With love, past you ♡</p>
+
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <p>forma<span>.</span> — a little space to grow.</p>
+    </footer>
+
+    <script src="js/theme.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/future-me.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,305 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Progress — Forma</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/progress.css">
+</head>
+
+<body class="progress-page">
+
+    <header class="navbar">
+        <button id="dark-mode" type="button" aria-label="Toggle dark mode">🌙</button>
+
+        <a href="index.html" class="logo">forma<span>.</span></a>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="my-space.html">My Space</a>
+            <a href="games.html">Mini Games</a>
+            <a href="calendar.html">Calendar</a>
+            <a href="growth.html">Growth Studio</a>
+            <a href="my-room.html">My Room ✦</a>
+            <a href="progress.html" class="active">My Progress</a>
+            <a href="future-me.html">Future Me</a>
+            <a href="profile.html">Profile</a>
+        </nav>
+
+        <a href="profile.html" class="nav-button">My profile ↗</a>
+    </header>
+
+    <main class="progress-container">
+
+        <!-- HERO -->
+        <section class="progress-hero">
+            <span class="progress-eyebrow">LOOK HOW FAR YOU'VE COME ✦</span>
+
+            <h1>Your progress, your pace.</h1>
+
+            <p>
+                Every little task, every focused moment and every habit
+                counts. Here's a little look at your journey.
+            </p>
+
+            <div class="progress-welcome">
+                <span>Keep growing,</span>
+                <strong id="progress-user-name">you</strong>
+                <span>♡</span>
+            </div>
+        </section>
+
+        <!-- OVERVIEW STATS -->
+        <section class="overview-grid">
+
+            <article class="overview-card">
+                <div class="overview-icon">✓</div>
+                <span class="overview-label">Tasks completed</span>
+                <strong id="stat-tasks">0</strong>
+                <small>From your My Space tasks</small>
+            </article>
+
+            <article class="overview-card">
+                <div class="overview-icon">🌱</div>
+                <span class="overview-label">Habits completed</span>
+                <strong id="stat-habits">0</strong>
+                <small>Recorded in Growth Studio</small>
+            </article>
+
+            <article class="overview-card">
+                <div class="overview-icon">⏱</div>
+                <span class="overview-label">Focus sessions</span>
+                <strong id="stat-focus">0</strong>
+                <small>Completed focus sessions</small>
+            </article>
+
+            <article class="overview-card">
+                <div class="overview-icon">🎮</div>
+                <span class="overview-label">Games played</span>
+                <strong id="stat-games">0</strong>
+                <small>Recorded game results</small>
+            </article>
+
+        </section>
+
+        <!-- WEEKLY ACTIVITY -->
+        <section class="progress-panel">
+            <div class="progress-section-heading">
+                <div>
+                    <span class="section-kicker">YOUR WEEK AT A GLANCE</span>
+                    <h2>Weekly activity</h2>
+                    <p>See the activity recorded over the last seven days.</p>
+                </div>
+
+                <span class="heading-decoration">✦</span>
+            </div>
+
+            <div class="weekly-summary">
+                <div>
+                    <strong id="weekly-total">0</strong>
+                    <span>activities this week</span>
+                </div>
+
+                <div>
+                    <strong id="weekly-best-day">—</strong>
+                    <span>your busiest day</span>
+                </div>
+            </div>
+
+            <div class="activity-chart" id="activity-chart"
+                aria-label="Weekly activity chart">
+                <!-- Bars are added by progress.js -->
+            </div>
+
+            <div class="chart-legend">
+                <span><i class="legend-dot habit-dot"></i> Habits</span>
+                <span><i class="legend-dot focus-dot"></i> Focus</span>
+                <span><i class="legend-dot mood-dot"></i> Mood entries</span>
+            </div>
+        </section>
+
+        <!-- HABITS AND FOCUS -->
+        <section class="progress-two-column">
+
+            <article class="progress-panel">
+                <div class="progress-section-heading">
+                    <div>
+                        <span class="section-kicker">SMALL STEPS ADD UP</span>
+                        <h2>Your habits</h2>
+                        <p>Your current Growth Studio habit list.</p>
+                    </div>
+
+                    <span class="heading-decoration">🌿</span>
+                </div>
+
+                <div class="habit-summary">
+                    <strong id="habit-completion-count">0 / 0</strong>
+                    <span>habits completed today</span>
+                </div>
+
+                <div class="progress-track">
+                    <div class="progress-fill" id="habit-progress-fill"></div>
+                </div>
+
+                <div class="habit-progress-list" id="habit-progress-list">
+                    <p class="empty-progress">
+                        Your habits will appear here when you add them in Growth Studio.
+                    </p>
+                </div>
+
+                <a href="growth.html" class="progress-link">
+                    Visit Growth Studio →
+                </a>
+            </article>
+
+            <article class="progress-panel">
+                <div class="progress-section-heading">
+                    <div>
+                        <span class="section-kicker">TIME WELL SPENT</span>
+                        <h2>Your focus time</h2>
+                        <p>A little reminder of the time you've dedicated to yourself.</p>
+                    </div>
+
+                    <span class="heading-decoration">☁️</span>
+                </div>
+
+                <div class="focus-highlight">
+                    <strong id="focus-total-minutes">0 min</strong>
+                    <span>Total recorded focus time</span>
+                </div>
+
+                <div class="focus-details">
+                    <div>
+                        <span>This week</span>
+                        <strong id="focus-week-minutes">0 min</strong>
+                    </div>
+
+                    <div>
+                        <span>Average session</span>
+                        <strong id="focus-average">0 min</strong>
+                    </div>
+                </div>
+
+                <a href="growth.html" class="progress-link">
+                    Start another focus session →
+                </a>
+            </article>
+
+        </section>
+
+        <!-- MOOD AND CALENDAR -->
+        <section class="progress-two-column">
+
+            <article class="progress-panel">
+                <div class="progress-section-heading">
+                    <div>
+                        <span class="section-kicker">CHECK IN WITH YOURSELF</span>
+                        <h2>Your mood journey</h2>
+                        <p>Your recent mood journal entries.</p>
+                    </div>
+
+                    <span class="heading-decoration">♡</span>
+                </div>
+
+                <div class="mood-summary">
+                    <strong id="mood-entry-count">0</strong>
+                    <span>mood entries recorded</span>
+                </div>
+
+                <div class="mood-history" id="progress-mood-history">
+                    <p class="empty-progress">
+                        Your mood entries will appear here when you use your journal.
+                    </p>
+                </div>
+            </article>
+
+            <article class="progress-panel">
+                <div class="progress-section-heading">
+                    <div>
+                        <span class="section-kicker">STAY ORGANISED</span>
+                        <h2>Your calendar</h2>
+                        <p>A little overview of your scheduled events.</p>
+                    </div>
+
+                    <span class="heading-decoration">🗓️</span>
+                </div>
+
+                <div class="calendar-summary">
+                    <strong id="calendar-event-count">0</strong>
+                    <span>events saved</span>
+                </div>
+
+                <div class="upcoming-events" id="progress-upcoming-events">
+                    <p class="empty-progress">
+                        Your calendar events will appear here.
+                    </p>
+                </div>
+
+                <a href="calendar.html" class="progress-link">
+                    Open your calendar →
+                </a>
+            </article>
+
+        </section>
+
+        <!-- GAME ACTIVITY -->
+        <section class="progress-panel game-progress-panel">
+            <div class="progress-section-heading">
+                <div>
+                    <span class="section-kicker">A LITTLE PLAYTIME</span>
+                    <h2>Your mini game activity</h2>
+                    <p>Every challenge is a chance to practise and improve.</p>
+                </div>
+
+                <span class="heading-decoration">🎮</span>
+            </div>
+
+            <div class="game-summary-grid">
+                <div>
+                    <span>Games played</span>
+                    <strong id="game-total">0</strong>
+                </div>
+
+                <div>
+                    <span>Best recorded score</span>
+                    <strong id="game-best-score">—</strong>
+                </div>
+            </div>
+
+            <div id="game-progress-list" class="game-progress-list">
+                <p class="empty-progress">
+                    Play a mini game to start building your game history.
+                </p>
+            </div>
+
+            <a href="games.html" class="progress-link">
+                Play a mini game →
+            </a>
+        </section>
+
+        <!-- MOTIVATION -->
+        <section class="progress-encouragement">
+            <span>♡</span>
+            <h2>Progress isn't always a straight line.</h2>
+            <p>
+                Some days you'll do a lot. Other days you'll do a little.
+                Both are part of growing. Keep showing up for yourself.
+            </p>
+            <a href="growth.html">Keep growing with Forma →</a>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <p>forma<span>.</span> — a little space to grow.</p>
+    </footer>
+
+    <script src="js/theme.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/progress.js"></script>
+
+</body>
+</html>
