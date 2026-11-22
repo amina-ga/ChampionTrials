@@ -1,14 +1,282 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>My Space — Forma</title><link rel="stylesheet" href="css/style.css"></head><body><header class="navbar">
-<button id="dark-mode" type="button" aria-label="Toggle dark mode">🌙</button>
-<a href="index.html" class="logo">forma<span>.</span></a>
-<nav><a href="index.html">Home</a><a href="my-space.html">My Space</a><a href="games.html">Mini Games ✦</a><a href="calendar.html">Calendar</a><a href="profile.html">Profile</a></nav>
-<a href="my-space.html" class="nav-button">My dashboard ↗</a>
-</header>
-<section class="page-hero"><span class="tag">YOUR PERSONAL SPACE</span><h1>A little more structure.<br><span>A lot more breathing room.</span></h1><p>Your own place for focus sessions, daily tasks, habits and a weekly timetable. Your changes are saved in this browser.</p></section>
-<main class="page-wrap"><div class="page-nav"><a href="calendar.html">Open calendar ↗</a><a href="games.html">Take a mini break ↗</a><a href="index.html">Home</a></div>
-<div class="tool-grid" style="grid-template-columns:repeat(2,minmax(0,1fr))">
-<section class="panel"><span class="tag">DEEP WORK</span><h2>Focus timer</h2><p>Work in a focused 25-minute session, then take a short break.</p><div class="timer-face" id="focus-clock">25:00</div><div class="timer-actions"><button id="focus-start">Start</button><button id="focus-pause">Pause</button><button id="focus-reset">Reset</button></div><p id="focus-status" class="muted" style="text-align:center;margin-top:14px">Ready when you are ✨</p></section>
-<section class="panel"><span class="tag">TODAY'S PRIORITIES</span><h2>Daily task list</h2><p>Add your priorities and tick them off as you go.</p><form id="task-form" class="form-row"><input id="task-name" placeholder="Add a task..." required maxlength="100"><button class="primary-action" type="submit">Add +</button></form><div id="tasks"></div><div class="progress-track"><span id="task-progress"></span></div><p id="task-count" class="muted">0 completed</p></section>
-<section class="panel"><span class="tag">YOUR WEEK AT A GLANCE</span><h2>Weekly timetable</h2><p>Add classes, study blocks or activities to each day.</p><form id="slot-form" class="timetable-form"><div class="form-row"><select id="slot-day"><option>Monday</option><option>Tuesday</option><option>Wednesday</option><option>Thursday</option><option>Friday</option><option>Saturday</option><option>Sunday</option></select><input id="slot-time" type="time" required></div><input id="slot-title" placeholder="Subject or activity" required maxlength="80"><button class="primary-action" type="submit">Add timetable slot +</button></form><div style="overflow-x:auto"><table class="timetable"><thead><tr><th>Day</th><th>Time</th><th>Activity</th><th></th></tr></thead><tbody id="timetable-body"></tbody></table></div></section>
-<section class="panel"><span class="tag">LITTLE THINGS ADD UP</span><h2>Daily habits</h2><p>Choose a few small habits to keep an eye on today.</p><div id="habit-list"></div><p class="muted" id="habit-progress" style="margin-top:15px"></p></section>
-</div></main><footer class="page-footer"><a class="logo" href="index.html">forma<span>.</span></a><span>Make space for great things. ✦</span><a href="index.html">Back to home</a></footer><script src="js/theme.js"></script><script src="js/auth.js"></script><script src="js/space.js"></script></body></html>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Space — Forma</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- NAVIGATION BAR -->
+    <header class="navbar">
+
+        <button id="dark-mode" type="button" aria-label="Toggle dark mode">
+            🌙
+        </button>
+
+        <a href="index.html" class="logo">
+            forma<span>.</span>
+        </a>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="my-space.html" class="active">My Space</a>
+            <a href="games.html">Mini Games ✦</a>
+            <a href="growth.html">Growth Studio ✦</a>
+            <a href="calendar.html">Calendar</a>
+            <a href="profile.html">Profile</a>
+        </nav>
+
+        <a href="my-space.html" class="nav-button">
+            My dashboard ↗
+        </a>
+
+    </header>
+
+
+    <!-- PAGE INTRODUCTION -->
+    <section class="page-hero">
+
+        <span class="tag">YOUR PERSONAL SPACE ✦</span>
+
+        <h1>
+            A little more structure.<br>
+            <span>A lot more breathing room.</span>
+        </h1>
+
+        <p>
+            Make room for what matters. Organise your daily tasks,
+            build healthy habits, plan your week and enjoy focused
+            moments at your own pace.
+        </p>
+
+    </section>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="page-wrap">
+
+        <!-- QUICK NAVIGATION -->
+        <div class="page-nav">
+            <a href="calendar.html">Open calendar ↗</a>
+            <a href="games.html">Take a mini break ↗</a>
+            <a href="index.html">Back home</a>
+        </div>
+
+
+        <!-- PRODUCTIVITY TOOLS -->
+        <div class="tool-grid" style="grid-template-columns: repeat(2, minmax(0, 1fr));">
+
+
+            <!-- FOCUS TIMER -->
+            <section class="panel">
+
+                <span class="tag">DEEP WORK</span>
+
+                <h2>Focus timer</h2>
+
+                <p>
+                    Give yourself 25 minutes of uninterrupted focus,
+                    followed by a short and refreshing break.
+                </p>
+
+                <div class="timer-face" id="focus-clock">
+                    25:00
+                </div>
+
+                <div class="timer-actions">
+
+                    <button id="focus-start">
+                        Start
+                    </button>
+
+                    <button id="focus-pause">
+                        Pause
+                    </button>
+
+                    <button id="focus-reset">
+                        Reset
+                    </button>
+
+                </div>
+
+                <p
+                    id="focus-status"
+                    class="muted"
+                    style="text-align: center; margin-top: 14px;"
+                >
+                    Ready when you are ✨
+                </p>
+
+            </section>
+
+
+            <!-- DAILY TASK LIST -->
+            <section class="panel">
+
+                <span class="tag">TODAY'S PRIORITIES</span>
+
+                <h2>Daily task list</h2>
+
+                <p>
+                    Keep track of what matters most. Add your tasks
+                    and celebrate each little accomplishment.
+                </p>
+
+                <form id="task-form" class="form-row">
+
+                    <input
+                        id="task-name"
+                        type="text"
+                        placeholder="What needs to get done?"
+                        required
+                        maxlength="100"
+                    >
+
+                    <button class="primary-action" type="submit">
+                        Add +
+                    </button>
+
+                </form>
+
+                <div id="tasks"></div>
+
+                <div class="progress-track">
+                    <span id="task-progress"></span>
+                </div>
+
+                <p id="task-count" class="muted">
+                    0 completed
+                </p>
+
+            </section>
+
+
+            <!-- WEEKLY TIMETABLE -->
+            <section class="panel">
+
+                <span class="tag">YOUR WEEK AT A GLANCE</span>
+
+                <h2>Weekly timetable</h2>
+
+                <p>
+                    Bring a little organisation to your week.
+                    Add classes, study sessions and personal activities.
+                </p>
+
+                <form id="slot-form" class="timetable-form">
+
+                    <div class="form-row">
+
+                        <select id="slot-day">
+
+                            <option>Monday</option>
+                            <option>Tuesday</option>
+                            <option>Wednesday</option>
+                            <option>Thursday</option>
+                            <option>Friday</option>
+                            <option>Saturday</option>
+                            <option>Sunday</option>
+
+                        </select>
+
+                        <input
+                            id="slot-time"
+                            type="time"
+                            required
+                        >
+
+                    </div>
+
+                    <input
+                        id="slot-title"
+                        type="text"
+                        placeholder="Add a subject or activity"
+                        required
+                        maxlength="80"
+                    >
+
+                    <button class="primary-action" type="submit">
+                        Add to my week +
+                    </button>
+
+                </form>
+
+                <div style="overflow-x: auto;">
+
+                    <table class="timetable">
+
+                        <thead>
+                            <tr>
+                                <th>Day</th>
+                                <th>Time</th>
+                                <th>Activity</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="timetable-body"></tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <!-- DAILY HABITS -->
+            <section class="panel">
+
+                <span class="tag">LITTLE THINGS ADD UP</span>
+
+                <h2>Daily habits</h2>
+
+                <p>
+                    Small actions create meaningful change.
+                    Choose a few habits and check them off as you go.
+                </p>
+
+                <div id="habit-list"></div>
+
+                <p
+                    class="muted"
+                    id="habit-progress"
+                    style="margin-top: 15px;"
+                ></p>
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="page-footer">
+
+        <a class="logo" href="index.html">
+            forma<span>.</span>
+        </a>
+
+        <span>Make space for great things. ✦</span>
+
+        <a href="index.html">
+            Back to home
+        </a>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT FILES -->
+    <script src="js/theme.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/space.js"></script>
+
+</body>
+</html>

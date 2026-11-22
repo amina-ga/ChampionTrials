@@ -1,0 +1,332 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Little Room — Forma</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/room.css">
+</head>
+
+<body class="room-page">
+
+    <header class="navbar">
+        <button id="dark-mode" type="button" aria-label="Toggle dark mode">🌙</button>
+
+        <a href="index.html" class="logo">forma<span>.</span></a>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="my-space.html">My Space</a>
+            <a href="games.html">Mini Games</a>
+            <a href="calendar.html">Calendar</a>
+            <a href="growth.html">Growth Studio</a>
+            <a href="my-room.html" class="active">My Room ✦</a>
+            <a href="profile.html">Profile</a>
+        </nav>
+
+        <a href="profile.html" class="nav-button">My profile ↗</a>
+    </header>
+
+    <main class="room-container">
+
+        <section class="room-hero">
+            <span class="room-eyebrow">YOUR LITTLE CORNER OF THE WORLD ✦</span>
+            <h1>Welcome to your little room.</h1>
+            <p>
+                A cosy space that grows with you. Collect coins, care for your
+                plant and decorate your own little corner.
+            </p>
+
+            <div class="room-welcome">
+                <span>Made just for</span>
+                <strong id="room-user-name">you</strong>
+                <span>♡</span>
+            </div>
+        </section>
+
+        <section class="room-stats" aria-label="Room statistics">
+            <article class="room-stat-card">
+                <span class="stat-icon">🪙</span>
+                <div>
+                    <span class="stat-label">Your coins</span>
+                    <strong id="room-coins">100</strong>
+                </div>
+            </article>
+
+            <article class="room-stat-card">
+                <span class="stat-icon">🌱</span>
+                <div>
+                    <span class="stat-label">Plant level</span>
+                    <strong id="plant-level">1</strong>
+                </div>
+            </article>
+
+            <article class="room-stat-card">
+                <span class="stat-icon">🪴</span>
+                <div>
+                    <span class="stat-label">Decorations owned</span>
+                    <strong id="decor-count">0</strong>
+                </div>
+            </article>
+        </section>
+
+        <section class="room-layout">
+
+            <div class="room-main-column">
+
+                <section class="room-panel">
+                    <div class="section-heading">
+                        <div>
+                            <span class="section-kicker">YOUR PERSONAL SPACE</span>
+                            <h2>My little room</h2>
+                            <p>Choose decorations and make this space yours.</p>
+                        </div>
+                        <span class="room-heart">♡</span>
+                    </div>
+
+                    <div class="virtual-room" id="virtual-room">
+
+                        <div class="room-wall">
+                            <div class="room-window">
+                                <div class="window-sky">
+                                    <span>☁️</span>
+                                    <span>☀️</span>
+                                </div>
+                            </div>
+
+                            <div class="room-wall-shelf">
+                                <span>✿</span>
+                                <span>♡</span>
+                                <span>✦</span>
+                            </div>
+
+                            <div class="room-picture" id="room-picture">
+                                <span>take it slow</span>
+                            </div>
+
+                            <div class="room-clock">☼</div>
+                        </div>
+
+                        <div class="room-floor">
+                            <div class="room-rug"></div>
+
+                            <div class="room-furniture" id="room-furniture">
+                                <div class="room-bed" id="room-bed">
+                                    <div class="bed-pillow"></div>
+                                    <div class="bed-blanket"></div>
+                                </div>
+
+                                <div class="room-desk" id="room-desk">
+                                    <div class="desk-top"></div>
+                                    <div class="desk-leg"></div>
+                                </div>
+
+                                <div class="room-plant" id="room-plant">
+                                    <span id="room-plant-emoji">🌱</span>
+                                    <small>my plant</small>
+                                </div>
+
+                                <div class="room-lamp" id="room-lamp">💡</div>
+                                <div class="room-extra" id="room-extra"></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="room-message" id="room-message" role="status">
+                        Your room is ready for a little makeover. ♡
+                    </div>
+                </section>
+
+                <section class="room-panel plant-panel">
+                    <div class="section-heading">
+                        <div>
+                            <span class="section-kicker">A LITTLE FRIEND</span>
+                            <h2>Your plant companion</h2>
+                            <p>Give your plant some love and watch it grow.</p>
+                        </div>
+                        <span class="plant-header-icon">🌿</span>
+                    </div>
+
+                    <div class="plant-content">
+                        <div class="plant-display">
+                            <span id="plant-display-emoji">🌱</span>
+                            <span class="plant-name">Sprout</span>
+                        </div>
+
+                        <div class="plant-details">
+                            <strong id="plant-status">Sprout is ready to grow!</strong>
+                            <p id="plant-description">
+                                Water your plant once a day to help it grow.
+                            </p>
+
+                            <div class="plant-progress-track">
+                                <div class="plant-progress-fill" id="plant-progress"></div>
+                            </div>
+
+                            <span class="plant-progress-label" id="plant-progress-label">
+                                Level 1 · 0 / 3 waterings
+                            </span>
+
+                            <button class="room-button primary-button" id="water-plant">
+                                💧 Water my plant
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+            <aside class="room-side-column">
+
+                <section class="room-panel daily-reward-panel">
+                    <span class="section-kicker">A LITTLE GIFT</span>
+                    <h2>Daily reward</h2>
+                    <div class="reward-illustration">🎁</div>
+                    <p>Come by each day to collect a little something for your room.</p>
+
+                    <div class="daily-reward-amount">+10 coins</div>
+
+                    <button class="room-button primary-button" id="claim-reward">
+                        Collect my reward
+                    </button>
+
+                    <span class="reward-status" id="reward-status" role="status">
+                        Your daily gift is waiting!
+                    </span>
+                </section>
+
+                <section class="room-panel">
+                    <span class="section-kicker">MAKE IT YOURS</span>
+                    <h2>Room colours</h2>
+                    <p class="panel-description">Choose a cosy colour for your room.</p>
+
+                    <div class="room-colour-options">
+                        <button class="room-colour active" data-room-colour="cream"
+                            aria-label="Cream room" title="Cream"></button>
+                        <button class="room-colour" data-room-colour="pink"
+                            aria-label="Pink room" title="Pink"></button>
+                        <button class="room-colour" data-room-colour="sage"
+                            aria-label="Sage room" title="Sage"></button>
+                        <button class="room-colour" data-room-colour="blue"
+                            aria-label="Blue room" title="Blue"></button>
+                        <button class="room-colour" data-room-colour="lavender"
+                            aria-label="Lavender room" title="Lavender"></button>
+                    </div>
+                </section>
+
+                <section class="room-panel">
+                    <span class="section-kicker">YOUR COLLECTION</span>
+                    <h2>Room inventory</h2>
+                    <p class="panel-description">Decorations you have collected.</p>
+
+                    <div class="inventory-list" id="room-inventory">
+                        <p class="empty-inventory">Your collection will appear here.</p>
+                    </div>
+                </section>
+
+            </aside>
+        </section>
+
+        <section class="room-panel shop-panel">
+            <div class="section-heading">
+                <div>
+                    <span class="section-kicker">A LITTLE SHOP</span>
+                    <h2>The decoration shop</h2>
+                    <p>Spend your coins on little things that make your room feel like home.</p>
+                </div>
+
+                <div class="shop-balance">
+                    🪙 <strong id="shop-coins">100</strong>
+                </div>
+            </div>
+
+            <div class="shop-grid" id="shop-grid">
+
+                <article class="shop-item" data-item="pink-bed">
+                    <div class="shop-item-image">🛏️</div>
+                    <h3>Pink cosy bed</h3>
+                    <p>A soft little bed for relaxing.</p>
+                    <div class="shop-item-bottom">
+                        <span>🪙 30</span>
+                        <button class="shop-buy-button" data-buy="pink-bed">Buy</button>
+                    </div>
+                </article>
+
+                <article class="shop-item" data-item="desk">
+                    <div class="shop-item-image">🪑</div>
+                    <h3>Study desk</h3>
+                    <p>A little place for big ideas.</p>
+                    <div class="shop-item-bottom">
+                        <span>🪙 25</span>
+                        <button class="shop-buy-button" data-buy="desk">Buy</button>
+                    </div>
+                </article>
+
+                <article class="shop-item" data-item="flower">
+                    <div class="shop-item-image">🌷</div>
+                    <h3>Flower pot</h3>
+                    <p>A pop of colour for your room.</p>
+                    <div class="shop-item-bottom">
+                        <span>🪙 15</span>
+                        <button class="shop-buy-button" data-buy="flower">Buy</button>
+                    </div>
+                </article>
+
+                <article class="shop-item" data-item="lamp">
+                    <div class="shop-item-image">🛋️</div>
+                    <h3>Cosy lamp</h3>
+                    <p>For warm and quiet evenings.</p>
+                    <div class="shop-item-bottom">
+                        <span>🪙 20</span>
+                        <button class="shop-buy-button" data-buy="lamp">Buy</button>
+                    </div>
+                </article>
+
+                <article class="shop-item" data-item="teddy">
+                    <div class="shop-item-image">🧸</div>
+                    <h3>Teddy bear</h3>
+                    <p>Your new little room buddy.</p>
+                    <div class="shop-item-bottom">
+                        <span>🪙 20</span>
+                        <button class="shop-buy-button" data-buy="teddy">Buy</button>
+                    </div>
+                </article>
+
+                <article class="shop-item" data-item="books">
+                    <div class="shop-item-image">📚</div>
+                    <h3>Book stack</h3>
+                    <p>A tiny stack of inspiration.</p>
+                    <div class="shop-item-bottom">
+                        <span>🪙 15</span>
+                        <button class="shop-buy-button" data-buy="books">Buy</button>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <section class="room-panel room-tips">
+            <span class="section-kicker">A LITTLE REMINDER</span>
+            <h2>Your room doesn't need to be perfect.</h2>
+            <p>
+                This is your space to slow down, celebrate little wins and
+                enjoy the process. Every small step counts. ♡
+            </p>
+            <a href="growth.html" class="room-text-link">Visit Growth Studio →</a>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <p>forma<span>.</span> — a little space to grow.</p>
+    </footer>
+
+    <script src="js/theme.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/room.js"></script>
+</body>
+</html>

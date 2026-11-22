@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Growth Studio — Forma</title>
+
+    <!-- Your existing Forma styles -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- New Growth Studio styles -->
+    <link rel="stylesheet" href="css/growth.css">
+</head>
+<body class="growth-page">
+
+    <!-- NAVIGATION -->
+    <header class="navbar">
+
+        <button id="dark-mode" type="button" aria-label="Toggle dark mode">🌙</button>
+
+        <a href="#" class="logo">forma<span>.</span></a>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="calendar.html">Calendar</a>
+            <a href="my-space.html">My Space</a>
+            <a href="growth.html" class="active">Growth Studio ✦</a>
+            <a href="games.html">Mini Games ✦</a>
+            
+        <a href="profile.html">Profile</a></nav>
+
+        <a href="profile.html" class="nav-button">My profile ↗</a>
+
+    </header>
+
+
+    <main class="growth-container">
+
+        <!-- HERO / PERSONAL DASHBOARD -->
+        <section class="growth-hero">
+            <div>
+                <span class="growth-eyebrow">YOUR PERSONAL SPACE ✦</span>
+                <h1>A little space to <span>grow.</span></h1>
+                <p>Small steps, gentle routines and little moments that make you feel good.</p>
+                <p class="today-date" id="today-date"></p>
+            </div>
+
+            <div class="hero-message">
+                <span>🌷</span>
+                <p>You don't have to do everything today. Just begin with one small thing.</p>
+            </div>
+        </section>
+
+        <!-- PERSONAL DASHBOARD -->
+        <section class="growth-section dashboard-section">
+            <div class="section-title">
+                <div>
+                    <span class="growth-eyebrow">YOUR LITTLE WORLD</span>
+                    <h2>Welcome to your space.</h2>
+                </div>
+            </div>
+
+            <div class="dashboard-grid">
+                <article class="growth-card welcome-card">
+                    <span class="card-emoji">💌</span>
+                    <h3>Make this space yours</h3>
+                    <label for="growth-name">What should we call you?</label>
+                    <div class="inline-form">
+                        <input id="growth-name" type="text" placeholder="Your name">
+                        <button id="save-name" type="button">Save</button>
+                    </div>
+                    <p id="name-message" class="small-message">A little space made just for you.</p>
+                </article>
+
+                <article class="growth-card stat-card">
+                    <span class="card-emoji">🌱</span>
+                    <p>Habits completed</p>
+                    <strong id="habit-stat">0</strong>
+                    <span class="stat-caption">today</span>
+                </article>
+
+                <article class="growth-card stat-card">
+                    <span class="card-emoji">⏳</span>
+                    <p>Focus sessions</p>
+                    <strong id="focus-stat">0</strong>
+                    <span class="stat-caption">completed</span>
+                </article>
+
+                <article class="growth-card stat-card">
+                    <span class="card-emoji">✨</span>
+                    <p>Your achievements</p>
+                    <strong id="achievement-stat">0</strong>
+                    <span class="stat-caption">unlocked</span>
+                </article>
+            </div>
+        </section>
+
+        <!-- HABIT GARDEN -->
+        <section class="growth-section" id="habit-garden">
+            <div class="section-title">
+                <div>
+                    <span class="growth-eyebrow">GROW AT YOUR OWN PACE</span>
+                    <h2>Your Habit Garden 🌼</h2>
+                    <p>Every little habit is a seed. Give it some attention today.</p>
+                </div>
+            </div>
+
+            <div class="growth-card">
+                <form id="habit-form" class="inline-form">
+                    <input id="habit-input" type="text" maxlength="45"
+                           placeholder="Add a habit, e.g. Read for 10 minutes" required>
+                    <button type="submit">Plant a habit +</button>
+                </form>
+
+                <div id="habit-list" class="habit-list"></div>
+                <p class="garden-note">🌿 You don't need a perfect routine. Consistency grows slowly.</p>
+            </div>
+        </section>
+
+        <!-- FOCUS ROOM -->
+        <section class="growth-section" id="focus-room">
+            <div class="section-title">
+                <div>
+                    <span class="growth-eyebrow">A MOMENT FOR YOU</span>
+                    <h2>Your Focus Room ⏳</h2>
+                    <p>Take a breath, choose a task and give it your attention.</p>
+                </div>
+            </div>
+
+            <div class="focus-layout">
+                <div class="growth-card focus-card">
+                    <span class="focus-label">TIME TO FOCUS</span>
+                    <div id="focus-timer" class="focus-timer">25:00</div>
+
+                    <div class="timer-modes">
+                        <button type="button" class="timer-mode active" data-minutes="25">Focus</button>
+                        <button type="button" class="timer-mode" data-minutes="5">Short break</button>
+                        <button type="button" class="timer-mode" data-minutes="15">Long break</button>
+                    </div>
+
+                    <div class="timer-actions">
+                        <button type="button" id="focus-start">Start</button>
+                        <button type="button" id="focus-reset" class="secondary-button">Reset</button>
+                    </div>
+                    <p id="focus-message" class="small-message">One thing at a time. You've got this.</p>
+                </div>
+
+                <div class="growth-card focus-task-card">
+                    <span class="card-emoji">📝</span>
+                    <h3>My focus task</h3>
+                    <p>What would you like to work on?</p>
+                    <input id="focus-task" type="text" placeholder="Write your task here">
+                    <p class="garden-note">Tip: Put your phone away and make this time yours.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- MOOD JOURNAL -->
+        <section class="growth-section" id="mood-journal">
+            <div class="section-title">
+                <div>
+                    <span class="growth-eyebrow">CHECK IN WITH YOURSELF</span>
+                    <h2>Your Mood Journal ☁️</h2>
+                    <p>There are no wrong feelings. Take a moment to notice yours.</p>
+                </div>
+            </div>
+
+            <div class="growth-card">
+                <h3>How are you feeling today?</h3>
+                <div class="mood-options" id="mood-options">
+                    <button type="button" data-mood="😊" aria-label="Happy">😊<span>Happy</span></button>
+                    <button type="button" data-mood="😌" aria-label="Calm">😌<span>Calm</span></button>
+                    <button type="button" data-mood="🥰" aria-label="Loved">🥰<span>Loved</span></button>
+                    <button type="button" data-mood="😴" aria-label="Tired">😴<span>Tired</span></button>
+                    <button type="button" data-mood="😟" aria-label="Anxious">😟<span>Anxious</span></button>
+                    <button type="button" data-mood="😔" aria-label="Sad">😔<span>Sad</span></button>
+                </div>
+
+                <label for="mood-note">Would you like to write something about it?</label>
+                <textarea id="mood-note" rows="4" placeholder="Write whatever is on your mind..."></textarea>
+                <button type="button" id="save-mood">Save today's check-in</button>
+                <p id="mood-message" class="small-message" aria-live="polite"></p>
+
+                <div class="journal-history">
+                    <h3>Recent check-ins</h3>
+                    <div id="mood-history"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ACHIEVEMENTS -->
+        <section class="growth-section" id="achievements">
+            <div class="section-title">
+                <div>
+                    <span class="growth-eyebrow">CELEBRATE THE LITTLE THINGS</span>
+                    <h2>Your Achievements 🏆</h2>
+                    <p>Every step forward deserves a little celebration.</p>
+                </div>
+            </div>
+            <div id="achievement-list" class="achievement-grid"></div>
+        </section>
+
+        <!-- WEEKLY WRAPPED -->
+        <section class="growth-section" id="weekly-wrapped">
+            <div class="section-title">
+                <div>
+                    <span class="growth-eyebrow">LOOK HOW FAR YOU'VE COME</span>
+                    <h2>Your Weekly Wrapped ✨</h2>
+                    <p>A small reminder of the effort you've been putting in.</p>
+                </div>
+            </div>
+
+            <div class="weekly-grid">
+                <article class="growth-card weekly-card">
+                    <span>🌱</span>
+                    <strong id="weekly-habits">0</strong>
+                    <p>Habits completed this week</p>
+                </article>
+                <article class="growth-card weekly-card">
+                    <span>⏳</span>
+                    <strong id="weekly-focus">0</strong>
+                    <p>Focus sessions this week</p>
+                </article>
+                <article class="growth-card weekly-card">
+                    <span>📖</span>
+                    <strong id="weekly-moods">0</strong>
+                    <p>Journal check-ins this week</p>
+                </article>
+            </div>
+            <p class="weekly-note" id="weekly-note">Every small effort counts. Keep going!</p>
+        </section>
+
+        <!-- CUSTOM THEMES -->
+        <section class="growth-section" id="customise">
+            <div class="section-title">
+                <div>
+                    <span class="growth-eyebrow">MAKE IT FEEL LIKE YOU</span>
+                    <h2>Customise Your Forma 🎨</h2>
+                    <p>Choose the colour that matches your mood.</p>
+                </div>
+            </div>
+
+            <div class="growth-card">
+                <div class="theme-options">
+                    <button type="button" data-theme="lavender" class="theme-choice lavender-choice">Lavender</button>
+                    <button type="button" data-theme="peach" class="theme-choice peach-choice">Peach</button>
+                    <button type="button" data-theme="sage" class="theme-choice sage-choice">Sage</button>
+                    <button type="button" data-theme="blue" class="theme-choice blue-choice">Sky blue</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- INSPIRATION CORNER -->
+        <section class="growth-section" id="inspiration">
+            <div class="section-title">
+                <div>
+                    <span class="growth-eyebrow">A LITTLE REMINDER</span>
+                    <h2>Inspiration Corner 💫</h2>
+                </div>
+            </div>
+
+            <div class="growth-card inspiration-card">
+                <span>“</span>
+                <p id="inspiration-quote">You are allowed to grow at your own pace.</p>
+                <button type="button" id="new-quote">Give me another reminder ↗</button>
+            </div>
+        </section>
+
+        <!-- STUDY PLANNER -->
+        <section class="growth-section" id="study-planner">
+            <div class="section-title">
+                <div>
+                    <span class="growth-eyebrow">ONE STEP AT A TIME</span>
+                    <h2>Your Study Planner 📚</h2>
+                    <p>Break your goals into manageable tasks.</p>
+                </div>
+            </div>
+
+            <div class="growth-card">
+                <form id="study-form" class="inline-form">
+                    <input id="study-input" type="text" maxlength="100"
+                           placeholder="Add a study task..." required>
+                    <button type="submit">Add task +</button>
+                </form>
+                <div id="study-list" class="study-list"></div>
+            </div>
+        </section>
+
+        <!-- DAILY SURPRISE -->
+        <section class="growth-section" id="daily-surprise">
+            <div class="section-title">
+                <div>
+                    <span class="growth-eyebrow">SOMETHING JUST FOR YOU</span>
+                    <h2>Your Daily Surprise 🎁</h2>
+                </div>
+            </div>
+
+            <div class="growth-card surprise-card">
+                <div class="surprise-icon">🎀</div>
+                <h3>A little surprise is waiting...</h3>
+                <p id="surprise-message">Click below to reveal today's little reminder.</p>
+                <button type="button" id="reveal-surprise">Open my surprise ✨</button>
+            </div>
+        </section>
+
+        <footer class="growth-footer">
+            <p>Made with ♡ for your little moments of growth.</p>
+            <a href="index.html">Back to Forma home ↑</a>
+        </footer>
+
+    </main>
+
+    <script src="js/theme.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/growth.js"></script>
+</body>
+</html>
