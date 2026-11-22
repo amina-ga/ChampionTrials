@@ -4104,3 +4104,158 @@ body.dark-mode .games .game-card input::placeholder {
     color: #a99bb7;
 }
 
+
+/* =====================================
+   FORMA — DREAMY AESTHETIC UPGRADE
+===================================== */
+
+/* 1. Smooth global transitions */
+
+* {
+    transition:
+        background-color 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* 2. Beautiful scrollbar */
+
+::-webkit-scrollbar {
+    width: 9px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f7f3fa;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #d6c3e6;
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #b89bcf;
+}
+
+/* 3. Elegant text selection */
+
+::selection {
+    background: #e5d5f2;
+    color: #665276;
+}
+
+/* 4. Soft card effects */
+
+.card,
+.feature-card,
+.calendar-card,
+.game-card,
+.growth-card,
+.room-card {
+    border-radius: 22px;
+    border: 1px solid rgba(190, 165, 215, 0.2);
+    box-shadow: 0 5px 20px rgba(100, 75, 120, 0.06);
+
+    transition: transform 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+.card:hover,
+.feature-card:hover,
+.calendar-card:hover,
+.game-card:hover,
+.growth-card:hover,
+.room-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 15px 35px rgba(120, 90, 145, 0.12);
+}
+
+/* 5. Beautiful buttons */
+
+button,
+.btn {
+    border-radius: 14px;
+    cursor: pointer;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background-color 0.25s ease;
+}
+
+button:hover,
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 18px rgba(150, 115, 180, 0.16);
+}
+
+button:active,
+.btn:active {
+    transform: scale(0.97);
+}
+
+/* 6. Soft input focus */
+
+input:not([type="checkbox"]):focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: #c3a5dc;
+
+    box-shadow:
+        0 0 0 4px rgba(195, 165, 220, 0.15);
+}
+
+/* 7. Page entrance animation */
+
+@keyframes formaEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+main {
+    animation: formaEntrance 0.65s ease both;
+}
+
+/* 8. Soft heading details */
+
+h1,
+h2 {
+    letter-spacing: -0.7px;
+}
+
+/* 9. Image hover effect */
+
+img {
+    transition: transform 0.4s ease;
+}
+
+img:hover {
+    transform: scale(1.02);
+}
+
+/* 10. Respect reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}

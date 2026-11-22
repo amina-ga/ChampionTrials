@@ -1,0 +1,127 @@
+
+/* =========================
+   FORMA FLOATING MUSIC PLAYER
+========================= */
+
+.music-player {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 12px 17px;
+
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    border: 1px solid rgba(190, 166, 215, 0.35);
+    border-radius: 22px;
+
+    box-shadow: 0 8px 30px rgba(120, 95, 145, 0.13);
+
+    font-family: inherit;
+    color: #756184;
+
+    transition: all 0.3s ease;
+}
+
+.music-player:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 35px rgba(120, 95, 145, 0.2);
+}
+
+.music-play-button {
+    width: 40px;
+    height: 40px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: linear-gradient(135deg, #d9c6ef, #eed9e6);
+    color: #705b85;
+
+    font-size: 17px;
+    cursor: pointer;
+
+    transition: 0.25s ease;
+}
+
+.music-play-button:hover {
+    transform: scale(1.1);
+}
+
+.music-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 90px;
+}
+
+.music-title {
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.music-status {
+    font-size: 10px;
+    opacity: 0.7;
+}
+
+.music-volume {
+    width: 65px;
+    accent-color: #b99bd4;
+    cursor: pointer;
+}
+
+.music-player button:focus-visible,
+.music-volume:focus-visible {
+    outline: 2px solid #a98ac8;
+    outline-offset: 3px;
+}
+
+.music-playing {
+    animation: musicPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes musicPulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(185, 155, 212, 0.15);
+    }
+
+    50% {
+        box-shadow: 0 0 0 7px rgba(185, 155, 212, 0.12);
+    }
+}
+
+/* Dark mode */
+
+body.dark-mode .music-player {
+    background: rgba(40, 35, 48, 0.92);
+    border-color: rgba(190, 166, 215, 0.2);
+    color: #e7d9f2;
+}
+
+body.dark-mode .music-play-button {
+    background: linear-gradient(135deg, #806b9b, #9a7897);
+    color: white;
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+    .music-player {
+        bottom: 15px;
+        right: 12px;
+        padding: 9px 12px;
+        gap: 9px;
+    }
+
+    .music-volume {
+        width: 48px;
+    }
+}
