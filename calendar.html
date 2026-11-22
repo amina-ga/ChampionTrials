@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Calendar — Forma</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <header class="navbar">
+        <button id="dark-mode" type="button" aria-label="Toggle dark mode">🌙</button>
+
+        <a href="index.html" class="logo">forma<span>.</span></a>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="my-space.html">My Space</a>
+            <a href="games.html">Mini Games ✦</a>
+            <a href="calendar.html">Calendar</a>
+            <a href="profile.html">Profile</a>
+        </nav>
+
+        <a href="my-space.html" class="nav-button">My dashboard ↗</a>
+    </header>
+
+
+    <!-- PAGE INTRODUCTION -->
+    <section class="page-hero">
+        <span class="tag">MAKE TIME FOR WHAT MATTERS</span>
+
+        <h1>Your plans, <span>in one view.</span></h1>
+
+        <p>
+            A monthly calendar for classes, deadlines, study sessions
+            and everything else you want to remember.
+        </p>
+    </section>
+
+
+    <!-- CALENDAR AND SCHEDULE -->
+    <main class="page-wrap calendar-page">
+
+        <div class="form-row">
+
+            <!-- MONTHLY CALENDAR -->
+            <section class="panel">
+
+                <div class="calendar-head">
+                    <button class="soft-button" id="prev-month">←</button>
+
+                    <h2 id="month-label">Month Year</h2>
+
+                    <button class="soft-button" id="next-month">→</button>
+                </div>
+
+                <div class="calendar-grid" id="calendar-grid"></div>
+
+                <p class="muted" style="margin-top:14px">
+                    Hover over a marked date for a quick event preview,
+                    or click it to see the full schedule and add events.
+                </p>
+
+            </section>
+
+
+            <!-- YOUR SCHEDULE -->
+            <section class="panel">
+
+                <span class="tag">YOUR SCHEDULE</span>
+
+                <h2 id="selected-date">Choose a date</h2>
+
+                <form id="event-form" class="event-form">
+
+                    <label for="event-title">Event title</label>
+
+                    <input
+                        id="event-title"
+                        placeholder="e.g. Biology revision"
+                        required
+                        maxlength="90"
+                    >
+
+                    <div class="form-row">
+
+                        <div>
+                            <label for="event-time">Time</label>
+
+                            <input id="event-time" type="time">
+                        </div>
+
+                        <div>
+                            <label for="event-type">Category</label>
+
+                            <select id="event-type">
+                                <option>Study</option>
+                                <option>Class</option>
+                                <option>Personal</option>
+                                <option>Deadline</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <label for="event-reminder">Reminder</label>
+
+                    <select id="event-reminder">
+                        <option value="10">10 minutes before</option>
+                        <option value="30">30 minutes before</option>
+                        <option value="60">1 hour before</option>
+                        <option value="0">At event time</option>
+                        <option value="-1">No reminder</option>
+                    </select>
+
+                    <p class="muted">
+                        Allow notifications when your browser asks.
+                        Reminders work while Forma is open.
+                    </p>
+
+                    <button class="primary-action" type="submit">
+                        Add to calendar +
+                    </button>
+
+                </form>
+
+                <div class="event-list" id="event-list"></div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="page-footer">
+
+        <a class="logo" href="index.html">forma<span>.</span></a>
+
+        <span>Make space for great things. ✦</span>
+
+        <a href="index.html">Back to home</a>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="js/theme.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/calendar.js"></script>
+
+</body>
+</html>
+
